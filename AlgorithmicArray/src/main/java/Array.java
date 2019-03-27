@@ -1,13 +1,13 @@
 public class Array {
 
-public int[][] transfer(int data[][])
+public int[][] transfer(int[][] data)
 {
     if (data==null)
         return null;
     if(data.length!=5&&data[0].length!=6)
         return null;
     for(int i=0;i<5;i++)
-            for(int j=0;j<6;j++)
+            for(int j=0;j<5;j++)
             {
                 if(data[i][j]==0)
                 {
