@@ -13,7 +13,7 @@ public class ArrayTaskTest {
     private ArrayTask arrayTask;
 
     @Before
-    public void setUP() {
+    public void setUp() {
         arrayTask = new ArrayTask();
     }
 

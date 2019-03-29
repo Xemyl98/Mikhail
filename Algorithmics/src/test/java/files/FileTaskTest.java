@@ -11,12 +11,12 @@ import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 
 public class FileTaskTest {
-    public static final String TESTFILE = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\Test.txt";
-    public static final String ACTUALFILE = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\filteredLog.txt";
-    public static final String LOG = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\Log.txt";
-    public static final String EMPTYDOCUMENT = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\EmptyDocument.txt";
-    public static final String ONEIPTEST = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\OneIpTest.txt";
-    public static final String ONEIPTESTRESULT = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\OneIpTest.txt";
+    public static final String TESTFILE = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\Test.txt";
+    public static final String ACTUALFILE = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\filteredLog.txt";
+    public static final String LOG = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\Log.txt";
+    public static final String EMPTYDOCUMENT = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\EmptyDocument.txt";
+    public static final String ONEIPTEST = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\OneIpTest.txt";
+    public static final String ONEIPTESTRESULT = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\OneIpTest.txt";
     private Path testFile = Paths.get(TESTFILE);
     private Path actualFile = Paths.get(ACTUALFILE);
     private Path oneIpFileTest = Paths.get(ONEIPTEST);

@@ -2,6 +2,7 @@ package arrays;
 
 public class ArrayTask {
     public int[][] zeroTransferToEndLineOfArray(int[][] inputArray) {
+
         if (inputArray == null)
             throw new NullPointerException();
         if (inputArray.length != 5 && inputArray[0].length != 6)

@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 
 public class FileTask {
-    public static final String LOGFILTERED = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\filteredLog.txt";
+    public static final String LOGFILTERED = "C:\\Project\\MikhailYolkin\\Algorithmics\\src\\main\\resources\\logfiles\\filteredLog.txt";
     Logger logger = Logger.getLogger(FileTask.class.getName());
     private Map<String, Integer> ip = new TreeMap<>();
     private Map<String, Integer> time = new TreeMap<>();
@@ -70,18 +70,21 @@ public class FileTask {
 
     public void fileRead(String path) {
         File logfile = new File(path);
+        boolean fileExist = true;
         try {
-            if (!logfile.exists()) {
-                logfile.createNewFile();
-            }
-            BufferedReader in = new BufferedReader(new FileReader(logfile.getAbsoluteFile()));
-            try {
-                String s;
-                while ((s = in.readLine()) != null)
-                    collectionFilling(s);
-            } finally {
-                in.close();
-            }
+            if (!logfile.exists())
+                fileExist = logfile.createNewFile();
+            if (fileExist) {
+                BufferedReader in = new BufferedReader(new FileReader(logfile.getAbsoluteFile()));
+                try {
+                    String s;
+                    while ((s = in.readLine()) != null)
+                        collectionFilling(s);
+                } finally {
+                    in.close();
+                }
+            } else
+                throw new IOException();
         } catch (IOException e) {
             logger.info(e.toString());
         }

@@ -14,7 +14,7 @@ public class StringTask {
                         inputString = inputString.substring(0, i);
                     else {
                         inputString = inputString.substring(0, i) + inputString.substring(i + 1, inputString.length());
-                        i = i - 1;
+                        i--;
                     }
                 }
             }
