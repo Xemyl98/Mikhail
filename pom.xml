@@ -13,8 +13,6 @@
         <module>Algorithmics</module>
     </modules>
 
-   
-	
 
     <build>
         <plugins>
