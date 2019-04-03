@@ -35,12 +35,11 @@ public class CollectionTaskTest {
         treeNode.insert(3);
         treeNode.insert(134);
     }
-    private ArrayList<String>  convertHashMapIntoArrayList(HashMap<String,Integer> hashMapToConvert)
-    {
-        ArrayList<String> dataFromHashMap=new ArrayList<>();
-        for(String key:hashMapFromManualInputValues.keySet())
-        {
-            dataFromHashMap.add(key+"="+hashMapFromManualInputValues.get(key));
+
+    private ArrayList<String> convertHashMapIntoArrayList(HashMap<String, Integer> hashMapToConvert) {
+        ArrayList<String> dataFromHashMap = new ArrayList<>();
+        for (String key : hashMapFromManualInputValues.keySet()) {
+            dataFromHashMap.add(key + "=" + hashMapFromManualInputValues.get(key));
         }
         return dataFromHashMap;
     }
@@ -54,7 +53,7 @@ public class CollectionTaskTest {
         manySpacesOutputValue = new ArrayList<>();
         correctDataInputValue.add("New My Lines In this tet");
         correctDataInputValue.add("Pop m4444 works or not");
-        correctDataInputValue.add("next Provs");
+        correctDataInputValue.add("next ProvS");
         correctDataOutputValue.add("New My In tet");
         correctDataOutputValue.add("Pop m4444 or not");
         correctDataOutputValue.add("next ");
@@ -109,7 +108,7 @@ public class CollectionTaskTest {
     }
 
     @Test
-    public void calculateTheCountOfRepetitionsValuesIntoHashMapFromManualInput() {
+    public void calculateTheCountOfRepetitionsValuesIntoHashMap() {
         fillingArrayList();
         hashMapFromManualInputValues = collectionTask.calculateTheCountOfRepetitionsValuesIntoHashMap(arrayListFromManualInputValues);
         assertEquals(FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_OUTPUT_VALUES), convertHashMapIntoArrayList(hashMapFromManualInputValues));

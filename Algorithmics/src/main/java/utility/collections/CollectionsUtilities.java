@@ -28,17 +28,17 @@ public class CollectionsUtilities {
     public HashMap<String, Integer> getHashMapWithCountDuplicatesValue(ArrayList<String> arrayListWithCountDuplicatesValue) {
         if (arrayListWithCountDuplicatesValue.isEmpty()) {
             writeRandomValuesIntoFile(100, 10);
-            arrayListWithCountDuplicatesValue=FilesUtilities.readFromFileIntoArrayList(RANDOM_VALUES);
+            arrayListWithCountDuplicatesValue = FilesUtilities.readFromFileIntoArrayList(RANDOM_VALUES);
             return getCountOfRepetitionsAfterRandomGeneration(arrayListWithCountDuplicatesValue);
         } else
             return getCountOfRepetitionsAfterRandomGeneration(arrayListWithCountDuplicatesValue);
     }
 
     private HashMap<String, Integer> getCountOfRepetitionsAfterRandomGeneration(ArrayList<String> arrayListWithAllValues) {
-        HashMap<String,Integer> hashMapWithCountOfDuplicatesValues=new HashMap<>();
-        for (int i=0;i<arrayListWithAllValues.size();i++) {
+        HashMap<String, Integer> hashMapWithCountOfDuplicatesValues = new HashMap<>();
+        for (int i = 0; i < arrayListWithAllValues.size(); i++) {
             if (hashMapWithCountOfDuplicatesValues.containsKey(arrayListWithAllValues.get(i)))
-                hashMapWithCountOfDuplicatesValues.put(arrayListWithAllValues.get(i), hashMapWithCountOfDuplicatesValues.get(arrayListWithAllValues.get(i))+1);
+                hashMapWithCountOfDuplicatesValues.put(arrayListWithAllValues.get(i), hashMapWithCountOfDuplicatesValues.get(arrayListWithAllValues.get(i)) + 1);
             else
                 hashMapWithCountOfDuplicatesValues.put(arrayListWithAllValues.get(i), 1);
         }
@@ -66,32 +66,35 @@ public class CollectionsUtilities {
         return listWords;
     }
 
-    private ArrayList<String> pickingUpAnArrayListWithoutWordsEndingInS(ArrayList<String> list) {
-        char[] words;
+    private ArrayList<String> pickingUpAnArrayListWithoutWordsEndingInS(ArrayList<String> arrayListWithSingleWords) {
+        char[] wordFromArrayList;
         String sentensies = "";
-        ArrayList<String> collectedArrayList = new ArrayList<>();
-        for (String line : list) {
-            if (line.contains("\0")) {
-                collectedArrayList.add(sentensies);
+        ArrayList<String> collectedFromSingleWordsToSentencesArrayList = new ArrayList<>();
+        for (String arrayListLine : arrayListWithSingleWords) {
+            if (arrayListLine.contains("\0")) {
+                collectedFromSingleWordsToSentencesArrayList.add(sentensies);
                 sentensies = "";
             } else {
-                words = line.toCharArray();
-                if (words.length == 1)
-                    if (words[words.length - 1] != 's' || words[words.length - 1] != 'S') {
-                        sentensies += line;
-                        continue;
-                    } else
-                        continue;
-                if (words[words.length - 1] != ' ' && (words[words.length - 1] == 's' || words[words.length - 1] == 'S'))
+                wordFromArrayList = arrayListLine.toCharArray();
+                if (wordFromArrayList.length == 1) {
+                    sentensies += arrayListLine;
                     continue;
-                if (words[words.length - 2] == 's' || words[words.length - 2] == 'S')
+                }
+                if (checkingTheWordForThePresenceOfSAtTheEnd(wordFromArrayList))
                     continue;
-                sentensies += line;
+                sentensies += arrayListLine;
             }
         }
-        return collectedArrayList;
+        return collectedFromSingleWordsToSentencesArrayList;
     }
 
+    private boolean checkingTheWordForThePresenceOfSAtTheEnd(char[] wordFromArrayList) {
+        if (wordFromArrayList[wordFromArrayList.length - 1] != ' ' && (wordFromArrayList[wordFromArrayList.length - 1] == 's' || wordFromArrayList[wordFromArrayList.length - 1] == 'S'))
+            return true;
+        if (wordFromArrayList[wordFromArrayList.length - 2] == 's' || wordFromArrayList[wordFromArrayList.length - 2] == 'S')
+            return true;
+        return false;
+    }
 
 }
 

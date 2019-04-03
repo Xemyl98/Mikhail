@@ -2,7 +2,7 @@ package model.tree;
 
 
 public class TreeNode {
-   private Tree root = null;
+    private Tree root = null;
 
     public void insert(int data) {
         Tree node = new Tree(data);

@@ -133,7 +133,7 @@ public class FilesUtilities {
             checkForCorrectDayOfWeek(lineFromFile);
         } catch (InvalidArgumentException e) {
             log.info("Incorrect Data Input");
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -198,7 +198,7 @@ public class FilesUtilities {
             if (checkSeconds > 59 || checkSeconds < 0)
                 throw new InvalidArgumentException("Incorrect Seconds");
         } catch (InvalidArgumentException e) {
-           log.info("Incorrect Data Time Limits");
+            log.info("Incorrect Data Time Limits");
         }
 
     }

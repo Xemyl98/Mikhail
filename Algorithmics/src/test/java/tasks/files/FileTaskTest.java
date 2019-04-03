@@ -12,8 +12,11 @@ public class FileTaskTest {
     private static final String EMPTY_DOCUMENT = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\EmptyDocument.txt";
     private static final String ONE_IP_TEST = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\OneIpTest.txt";
     private static final String ONE_IP_TEST_RESULT = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\OneIpTestResult.txt";
-    private static final String FILE_WITHOUT_PART_OF_LINE = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\FileWithoutPartOfLine.txt";
-
+    private static final String FILE_WITHOUT_PART_OF_IP = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\FileWithoutPartOfIp.txt";
+    private static final String FILE_WITH_EXTRA_SPACE = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\FileWithExtraSpace.txt";
+    private static final String FILE_WITH_INCORRECT_DAY_OF_WEEK = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\FileWithIncorrectDayOfWeek.txt";
+    private static final String FILE_WITHOUT_PART_OF_TIME = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\FileWithoutPartOfTime.txt";
+    private static final String FILE_WITH_INCORRECT_TIME = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\logfiles\\FileWithIncorrectTime.txt";
     private tasks.files.FileTask fileTask;
 
     @Before
@@ -38,10 +41,29 @@ public class FileTaskTest {
         assertEquals(FilesUtilities.readFromFileIntoArrayList(ONE_IP_TEST_RESULT), FilesUtilities.readFromFileIntoArrayList(ONE_IP_TEST_RESULT));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void getFilteredLogFromFileWithoutPartOfDataValue() {
+    @Test(expected = IllegalArgumentException.class)
+    public void getFilteredLogFromFileWithoutPartOfIp() {
+        fileTask.getFilteredLogFile(FILE_WITHOUT_PART_OF_IP, FILE_WITHOUT_PART_OF_IP);
+    }
 
-        fileTask.getFilteredLogFile(FILE_WITHOUT_PART_OF_LINE, FILE_WITHOUT_PART_OF_LINE);
+    @Test(expected = IllegalArgumentException.class)
+    public void getFilteredLogFromFileWithExtraSpace() {
+        fileTask.getFilteredLogFile(FILE_WITH_EXTRA_SPACE, FILE_WITH_EXTRA_SPACE);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getFilteredLogFromFileWithIncorrectDayOfWeek() {
+        fileTask.getFilteredLogFile(FILE_WITH_INCORRECT_DAY_OF_WEEK, FILE_WITH_INCORRECT_DAY_OF_WEEK);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getFilteredLogFromFileWithoutPartOfTime() {
+        fileTask.getFilteredLogFile(FILE_WITHOUT_PART_OF_TIME, FILE_WITHOUT_PART_OF_TIME);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getFilteredLogFromFileWithIncorrectTime() {
+        fileTask.getFilteredLogFile(FILE_WITH_INCORRECT_TIME, FILE_WITH_INCORRECT_TIME);
     }
 
 }

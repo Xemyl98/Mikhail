@@ -1,7 +1,6 @@
 package tasks.exceptions;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -15,34 +14,33 @@ public class ExampleExceptionTest {
         exampleException = new ExampleException();
     }
 
-  @Ignore
-  @Test(expected = ArithmeticException.class)
-    public void divisionByZero()  {
+    @Test(expected = ArithmeticException.class)
+    public void divisionByZero() {
         exampleException.divideByZeroException(10);
     }
-    @Ignore
+
     @Test(expected = IOException.class)
-    public void exceptionFromFile()  {
+    public void exceptionFromFile() throws IOException {
         exampleException.exceptionsFromFile();
     }
-    @Ignore
+
     @Test(expected = FileNotFoundException.class)
-    public void fileNotFoundException()  {
+    public void fileNotFoundException() throws FileNotFoundException {
         exampleException.fileNotFoundException();
     }
-    @Ignore
+
     @Test(expected = IndexOutOfBoundsException.class)
-    public void arrayIndexOutOfBoundsException()  {
+    public void arrayIndexOutOfBoundsException() {
         exampleException.indexOutOfBoundsException();
     }
-    @Ignore
+
     @Test(expected = NullPointerException.class)
-    public void nullPointerException()  {
+    public void nullPointerException() {
         exampleException.nullPointerException(null);
     }
-    @Ignore
-    @Test(expected = ArithmeticException.class)
-    public void tryCatchInsideEachOtherException()  {
+
+    @Test(expected = StringIndexOutOfBoundsException.class)
+    public void tryCatchInsideEachOtherException() {
         exampleException.tryCatchInsideEachOther();
     }
 

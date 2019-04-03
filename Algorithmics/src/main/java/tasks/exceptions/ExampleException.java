@@ -23,6 +23,7 @@ public class ExampleException {
             char example = emptyLine.charAt(0);
         } catch (NullPointerException exception) {
             log.info("Null Pointer Exception");
+            throw new NullPointerException();
         }
     }
 
@@ -33,15 +34,17 @@ public class ExampleException {
             int example = array[6];
         } catch (ArrayIndexOutOfBoundsException exception) {
             log.info("Array Index Out Of Bounds Exception");
+            throw new ArrayIndexOutOfBoundsException();
         }
     }
 
-    public void fileNotFoundException() {
+    public void fileNotFoundException() throws FileNotFoundException {
         try {
             File file = new File("E://file.txt");
             FileReader fr = new FileReader(file);
         } catch (FileNotFoundException exception) {
             log.info("File Not Found Exception");
+            throw new FileNotFoundException();
         }
     }
 
@@ -53,13 +56,15 @@ public class ExampleException {
                 int divisionByZero = 10 / 0;
             } catch (ArithmeticException ex1) {
                 log.info("Division By Zero");
+                throw new ArithmeticException();
             }
         } catch (StringIndexOutOfBoundsException ex1) {
             log.info("String Index Out Of Bounds Exception");
+            throw new StringIndexOutOfBoundsException();
         }
     }
 
-    public void exceptionsFromFile() {
+    public void exceptionsFromFile() throws IOException {
         try {
             FileReader reader = new FileReader("someFile");
             int i = 0;
@@ -68,14 +73,16 @@ public class ExampleException {
             reader.close();
         } catch (FileNotFoundException e) {
             log.info("File Not Found Exception");
+            throw new FileNotFoundException();
         } catch (IOException e) {
             log.info(e.toString());
+            throw new IOException();
         }
 
         openFile();
     }
 
-    private void openFile() {
+    private void openFile() throws IOException {
         FileReader reader = null;
         try {
             reader = new FileReader("someFile");
@@ -85,14 +92,17 @@ public class ExampleException {
             int divisionByZero = i / 10;
         } catch (IOException e) {
             log.info(e.toString());
+            throw new IOException();
         } catch (ArithmeticException ex) {
             log.info("Division By Zero");
+            throw new ArithmeticException();
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
                     log.info(e.toString());
+                    throw new IOException();
                 }
             }
         }

@@ -34,18 +34,21 @@ public class StringTaskTest {
         stringTask.cyclicShiftStringLooking(null, null);
     }
 
-    @Test (expected = InvalidArgumentException.class)
+    @Test(expected = InvalidArgumentException.class)
     public void incorrectSizeStringForCyclicMatching() throws InvalidArgumentException {
-        stringTask.cyclicShiftStringLooking("dsf","dsfdsf");
+        stringTask.cyclicShiftStringLooking("dsf", "dsfdsf");
     }
+
     @Test
     public void inputMismatchedStringsInCyclicShift() throws InvalidArgumentException {
-        assertEquals(null, stringTask.cyclicShiftStringLooking("bcd ifa","abcs if"));
+        assertEquals(null, stringTask.cyclicShiftStringLooking("bcd ifa", "abcs if"));
     }
+
     @Test
     public void correctStringValueForCyclicMatching() throws InvalidArgumentException {
-        assertEquals("bcd ifa", stringTask.cyclicShiftStringLooking("bcd ifa","abcd if"));
+        assertEquals("bcd ifa", stringTask.cyclicShiftStringLooking("bcd ifa", "abcd if"));
     }
+
     @Test
     public void removingSpacesInStringWithOneSpace() {
         assertEquals("", stringTask.removingSpacesInTheEnteringSpace(" "));
@@ -62,10 +65,10 @@ public class StringTaskTest {
     }
 
     @Test
-    public void removingSpacesInStringWithMultipleSpacesBetweenWords()
-    {
-        assertEquals("UsualStringWithMultipleSpaces",stringTask.removingSpacesInTheEnteringSpace("Usual  String   With   Multiple   Spaces"));
+    public void removingSpacesInStringWithMultipleSpacesBetweenWords() {
+        assertEquals("UsualStringWithMultipleSpaces", stringTask.removingSpacesInTheEnteringSpace("Usual  String   With   Multiple   Spaces"));
     }
+
     @Test
     public void defaultUserStringInput() {
         String outputString = stringTask.removingSpacesInTheEnteringSpace("English texts for beginners to practice reading and comprehension online and for free. Practicing your comprehension of written English will both improve your vocabulary and understanding of grammar and word order.");

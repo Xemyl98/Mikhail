@@ -4,11 +4,11 @@ import utility.arrays.ArraysUtilities;
 
 class ArrayTask {
 
-/*    private ArraysUtilities arraysUtilities;
-     ArrayTask()
-     {
-         arraysUtilities=new ArraysUtilities();
-     }*/
+    /*    private ArraysUtilities arraysUtilities;
+         ArrayTask()
+         {
+             arraysUtilities=new ArraysUtilities();
+         }*/
     int[][] moveZerosToTheEndOfTheArrayRow(int[][] arrayToSortByZero) {
         ArraysUtilities arraysUtilities = new ArraysUtilities();
         arraysUtilities.checkForAUninitializedArrayInput(arrayToSortByZero);

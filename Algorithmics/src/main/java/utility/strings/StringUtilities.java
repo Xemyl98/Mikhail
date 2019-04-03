@@ -46,15 +46,15 @@ public class StringUtilities {
 
     private String getSubstringWithoutSpace(String inputText, int indexOfSpace) {
         if (indexOfSpace == inputText.length() - 1)
-            inputText = getSubstringFromStartToIndex(inputText,indexOfSpace);
+            inputText = getSubstringFromStartToIndex(inputText, indexOfSpace);
         else {
-            inputText = getSubstringFromStartToIndex(inputText,indexOfSpace) + inputText.substring(indexOfSpace + 1);
+            inputText = getSubstringFromStartToIndex(inputText, indexOfSpace) + inputText.substring(indexOfSpace + 1);
         }
         return inputText;
     }
 
-    private String getSubstringFromStartToIndex(String inputString,int index) {
-        return inputString.substring(0,index);
+    private String getSubstringFromStartToIndex(String inputString, int index) {
+        return inputString.substring(0, index);
     }
 
 }
