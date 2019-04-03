@@ -1,15 +1,15 @@
 package tasks.files;
 
-import tasks.files.utility.FilesUtility;
+import utility.files.FilesUtilities;
 
-public class FileTask {
-    public void getFilteredLogFile(String log,String filteredLog)
+ class FileTask {
+     void getFilteredLogFile(String log,String filteredLog)
     {
-        FilesUtility.testOnEmptyFile(log);
-        FilesUtility.readFromFile(log);
-        FilesUtility.removeIpPartFromCollection();
-        FilesUtility.filteredLog(filteredLog);
+        FilesUtilities filesUtilities=new FilesUtilities();
+        filesUtilities.checkForAEmptyFile(log);
+        filesUtilities.readFromLogFile(log);
+        filesUtilities.removeIpPartFromCollection();
+        filesUtilities.filteredLog(filteredLog);
     }
 }
-
 

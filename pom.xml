@@ -1,18 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mycompany.polishalgorithm</groupId>
-    <artifactId>Michail</artifactId>
+    <groupId>by.jazzteam</groupId>
+    <artifactId>Mikhail</artifactId>
     <packaging>pom</packaging>
     <version>1</version>
-    <name>multi</name>
+    <name>Mikhail</name>
     <url>http://maven.apache.org</url>
 
     <modules>
         <module>tz</module>
         <module>Algorithmics</module>
+        <module>patterns</module>
     </modules>
 
+    <properties>
+        <sonar.exclusions>**/ExampleException.java</sonar.exclusions>
+    </properties>
 
     <build>
         <plugins>

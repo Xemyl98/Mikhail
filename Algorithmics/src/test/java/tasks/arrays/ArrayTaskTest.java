@@ -9,7 +9,15 @@ import static org.junit.Assert.assertArrayEquals;
 public class ArrayTaskTest {
 
 
-    private tasks.arrays.ArrayTask arrayTask;
+    private ArrayTask arrayTask;
+
+    final int[] CORRECT_DATA_FOR_FIRST_ARRAY = {1, 2, 3, 4, 5, 6, 7};
+    final int[] CORRECT_DATA_FOR_SECOND_ARRAY = {1, 2, 3, 4, 5};
+    final int[] EXPECTED_CORRECT_DATA = {6, 7, 8, 9, 10, 11, 12};
+    final int[] FIRST_ARRAY_WITH_INCORRECT_SIZE = {1};
+    final int[] SECOND_ARRAY_WITH_INCORRECT_SIZE = {1};
+    final int[] ARRAY_WITH_ALL_ZERO_VALUE = {0, 0, 0, 0, 0};
+    final int[] EXPECTED_ARRAY_WITH_ALL_ZERO_VALUE = {0};
     private static int[][] arrayWithAllZeroValue;
     private static int[][] arrayWithoutZeroValue;
     private static int[][] arrayWithCorrectDataValueOutput;
@@ -34,17 +42,29 @@ public class ArrayTaskTest {
     public void moveZerosToTheEndOfTheArrayRowWithIncorrectArraySize() {
         arrayTask.moveZerosToTheEndOfTheArrayRow(arrayWithIncorrectSize);
     }
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void findEqualsAmountsInArraysWithIncorrectArraySize() {
+        arrayTask.findEqualsAmountsInArrays(FIRST_ARRAY_WITH_INCORRECT_SIZE, SECOND_ARRAY_WITH_INCORRECT_SIZE);
+    }
 
     @Test(expected = NullPointerException.class)
-    public void inputOfUninitializedArray() {
+    public void moveZerosToTheEndOfTheArrayRowWithUninitializedArray() {
         arrayTask.moveZerosToTheEndOfTheArrayRow(null);
     }
 
-    @Test
-    public void inputArrayWithAllZeroValue() {
-        assertArrayEquals(arrayWithAllZeroValue, arrayTask.moveZerosToTheEndOfTheArrayRow(arrayWithAllZeroValue));
+    @Test(expected = NullPointerException.class)
+    public void findEqualsAmountsInArraysWithUninitializedArray() {
+        arrayTask.findEqualsAmountsInArrays(null, null);
     }
 
+    @Test
+    public void moveZerosToTheEndOfTheArrayRowWithAllZeroValue() {
+        assertArrayEquals(arrayWithAllZeroValue, arrayTask.moveZerosToTheEndOfTheArrayRow(arrayWithAllZeroValue));
+    }
+    @Test
+    public void findEqualsAmountInArraysWithAllZeroValue() {
+        assertArrayEquals(EXPECTED_ARRAY_WITH_ALL_ZERO_VALUE, arrayTask.findEqualsAmountsInArrays(ARRAY_WITH_ALL_ZERO_VALUE, ARRAY_WITH_ALL_ZERO_VALUE));
+    }
 
     @Test
     public void inputArrayWithoutZeroValue() {
@@ -54,5 +74,9 @@ public class ArrayTaskTest {
     @Test
     public void inputArrayWithCorrectValue() {
         assertArrayEquals(arrayWithCorrectDataValueOutput, arrayTask.moveZerosToTheEndOfTheArrayRow(arrayWithCorrectDataValueInput));
+    }
+
+    public void findEqualsAmountsInArraysWithCorrectValue() {
+        assertArrayEquals(EXPECTED_CORRECT_DATA, arrayTask.findEqualsAmountsInArrays(CORRECT_DATA_FOR_FIRST_ARRAY, CORRECT_DATA_FOR_SECOND_ARRAY));
     }
 }

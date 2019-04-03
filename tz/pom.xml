@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.mycompany.polishalgorithm</groupId>
-        <artifactId>multi</artifactId>
+        <groupId>by.jazzteam</groupId>
+        <artifactId>Mikhail</artifactId>
         <version>1</version>
     </parent>
   <artifactId>tz</artifactId>

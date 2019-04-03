@@ -19,7 +19,8 @@ import org.testng.annotations.Test;
 public class PolishAlgorithmNGTest {
 
     private static Logger log = Logger.getLogger(PolishAlgorithm.class.getName());
- @Test(dataProvider = "convert")
+
+    @Test(dataProvider = "convert")
   public void testParallelConvert(String data,String real_data) {
     final Thread thread = Thread.currentThread();
     Converting conv = new Converting();

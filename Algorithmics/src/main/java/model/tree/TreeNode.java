@@ -1,18 +1,18 @@
-package tasks.collections;
+package model.tree;
 
-import tasks.collections.utility.CollectionsUtilities;
 
 public class TreeNode {
-    CollectionsUtilities.Tree root = null;
+   private Tree root = null;
+
     public void insert(int data) {
-        CollectionsUtilities.Tree node = new CollectionsUtilities.Tree(data);
+        Tree node = new Tree(data);
         if (root == null) {
             root = node;
             return;
         }
 
-        CollectionsUtilities.Tree currentNode = root;
-        CollectionsUtilities.Tree parentNode;
+        Tree currentNode = root;
+        Tree parentNode;
 
         while (true) {
             parentNode = currentNode;
@@ -39,7 +39,7 @@ public class TreeNode {
         return countNodes(root);
     }
 
-    private int countNodes(CollectionsUtilities.Tree node) {
+    private int countNodes(Tree node) {
         if (node == null) {
             return 0;
         } else {

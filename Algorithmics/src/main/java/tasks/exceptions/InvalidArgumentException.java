@@ -1,4 +1,4 @@
-package tasks.exceptions.utility;
+package tasks.exceptions;
 
 public class InvalidArgumentException extends Exception {
     public InvalidArgumentException() {

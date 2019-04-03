@@ -1,14 +1,20 @@
 package tasks.strings;
 
-import tasks.strings.utility.StringUtilities;
+import tasks.exceptions.InvalidArgumentException;
+import utility.strings.StringUtilities;
 
-public class StringTask {
-    public String removingSpaces(String inputString) {
-        StringUtilities.setInputString(inputString);
-        StringUtilities.testOnNullString(inputString);
-        StringUtilities.testOnEmptyString(inputString);
-        StringUtilities.testOnStringOnlyWithSpaces();
-        StringUtilities.removingSpacesOnString();
-        return StringUtilities.getInputString();
+class StringTask {
+    String removingSpacesInTheEnteringSpace(String textToRemoveSpace) {
+        StringUtilities stringUtilities = new StringUtilities();
+        stringUtilities.checkForCorrectStringInput(textToRemoveSpace);
+        return stringUtilities.removingSpacesOnString(textToRemoveSpace);
+    }
+
+    String cyclicShiftStringLooking(String sampleLine, String stringToCompare) throws InvalidArgumentException {
+        StringUtilities stringUtilities = new StringUtilities();
+        stringUtilities.checkForCorrectStringInput(sampleLine);
+        stringUtilities.checkForCorrectStringInput(stringToCompare);
+        stringUtilities.checkForEqualSizeOfLines(sampleLine, stringToCompare);
+        return stringUtilities.searchMatchesByCyclicShift(sampleLine, stringToCompare);
     }
 }
