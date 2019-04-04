@@ -54,7 +54,10 @@ public class CollectionsUtilities {
             words = line.toCharArray();
             for (int i = 0; i < words.length; i++) {
                 if (words[i] == ' ') {
-                    listWords.add(String.valueOf(Arrays.copyOfRange(words, begin, i + 1)));
+                    if(begin-i==0)
+                        listWords.add(String.valueOf(Arrays.copyOfRange(words, begin, i+1)));
+                    else
+                    listWords.add(String.valueOf(Arrays.copyOfRange(words, begin, i)));
                     begin = i + 1;
                 } else if (i == words.length - 1)
                     listWords.add(String.valueOf(Arrays.copyOfRange(words, begin, i + 1)));
@@ -62,27 +65,26 @@ public class CollectionsUtilities {
             begin = 0;
             listWords.add("\0");
         }
-
         return listWords;
     }
 
     private ArrayList<String> pickingUpAnArrayListWithoutWordsEndingInS(ArrayList<String> arrayListWithSingleWords) {
         char[] wordFromArrayList;
-        String sentensies = "";
+        String sentences = "";
         ArrayList<String> collectedFromSingleWordsToSentencesArrayList = new ArrayList<>();
         for (String arrayListLine : arrayListWithSingleWords) {
             if (arrayListLine.contains("\0")) {
-                collectedFromSingleWordsToSentencesArrayList.add(sentensies);
-                sentensies = "";
+                collectedFromSingleWordsToSentencesArrayList.add(sentences.substring(0,sentences.length()-1));
+                sentences = "";
             } else {
                 wordFromArrayList = arrayListLine.toCharArray();
                 if (wordFromArrayList.length == 1) {
-                    sentensies += arrayListLine;
+                    sentences += arrayListLine;
                     continue;
                 }
                 if (checkingTheWordForThePresenceOfSAtTheEnd(wordFromArrayList))
                     continue;
-                sentensies += arrayListLine;
+                sentences += arrayListLine+" ";
             }
         }
         return collectedFromSingleWordsToSentencesArrayList;

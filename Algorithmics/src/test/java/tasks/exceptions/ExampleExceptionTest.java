@@ -31,7 +31,7 @@ public class ExampleExceptionTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void arrayIndexOutOfBoundsException() {
-        exampleException.indexOutOfBoundsException();
+        exampleException.indexOutOfBoundsException(6);
     }
 
     @Test(expected = NullPointerException.class)

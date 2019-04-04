@@ -7,14 +7,13 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 public class ExampleException {
-    private static final Logger log = Logger.getLogger(ExampleException.class.getName());
 
+    private static final String pathToNonExistentFile="E://file.txt";
     public void divideByZeroException(int number) {
         try {
             int example = number / 0;
         } catch (ArithmeticException exception) {
-            log.info("Division By Zero");
-            throw new ArithmeticException();
+            throw new ArithmeticException("Division by zero");
         }
     }
 
@@ -22,29 +21,26 @@ public class ExampleException {
         try {
             char example = emptyLine.charAt(0);
         } catch (NullPointerException exception) {
-            log.info("Null Pointer Exception");
-            throw new NullPointerException();
+            throw new NullPointerException("Try to get data from empty line");
         }
     }
 
 
-    public void indexOutOfBoundsException() {
+    public void indexOutOfBoundsException(int indexBiggerThanArraySize) {
         try {
             int[] array = new int[5];
-            int example = array[6];
+            int example = array[indexBiggerThanArraySize];
         } catch (ArrayIndexOutOfBoundsException exception) {
-            log.info("Array Index Out Of Bounds Exception");
-            throw new ArrayIndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException("Try to get data from "+indexBiggerThanArraySize);
         }
     }
 
     public void fileNotFoundException() throws FileNotFoundException {
         try {
-            File file = new File("E://file.txt");
+            File file = new File(pathToNonExistentFile);
             FileReader fr = new FileReader(file);
         } catch (FileNotFoundException exception) {
-            log.info("File Not Found Exception");
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(pathToNonExistentFile+" does not exist");
         }
     }
 
@@ -55,28 +51,24 @@ public class ExampleException {
             try {
                 int divisionByZero = 10 / 0;
             } catch (ArithmeticException ex1) {
-                log.info("Division By Zero");
-                throw new ArithmeticException();
+                throw new ArithmeticException("Division by zero");
             }
         } catch (StringIndexOutOfBoundsException ex1) {
-            log.info("String Index Out Of Bounds Exception");
-            throw new StringIndexOutOfBoundsException();
+            throw new StringIndexOutOfBoundsException("String Index Out Of Bounds Exception");
         }
     }
 
     public void exceptionsFromFile() throws IOException {
         try {
-            FileReader reader = new FileReader("someFile");
+            FileReader reader = new FileReader(pathToNonExistentFile);
             int i = 0;
             while (i != -1)
                 i = reader.read();
             reader.close();
         } catch (FileNotFoundException e) {
-            log.info("File Not Found Exception");
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(pathToNonExistentFile+" does not exist");
         } catch (IOException e) {
-            log.info(e.toString());
-            throw new IOException();
+            throw new IOException(e.getMessage());
         }
 
         openFile();
@@ -85,24 +77,21 @@ public class ExampleException {
     private void openFile() throws IOException {
         FileReader reader = null;
         try {
-            reader = new FileReader("someFile");
+            reader = new FileReader(pathToNonExistentFile);
             int i = 0;
             while (i != -1)
                 i = reader.read();
             int divisionByZero = i / 10;
         } catch (IOException e) {
-            log.info(e.toString());
-            throw new IOException();
+            throw new IOException(e.getMessage());
         } catch (ArithmeticException ex) {
-            log.info("Division By Zero");
-            throw new ArithmeticException();
+            throw new ArithmeticException("Division by zero");
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-                    log.info(e.toString());
-                    throw new IOException();
+                    throw new IOException(e.getMessage());
                 }
             }
         }

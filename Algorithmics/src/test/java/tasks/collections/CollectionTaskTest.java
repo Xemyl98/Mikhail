@@ -12,7 +12,9 @@ import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 
 public class CollectionTaskTest {
-    private TreeNode treeNode;
+    private static TreeNode treeNodeWithCorrectData;
+    private static TreeNode treeNodeWithOneNode;
+    private static TreeNode emptyTreeNode;
     private CollectionTask collectionTask;
     private static final String PATH_TO_MANUAL_INPUT_VALUES = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\collections\\ManualInput.txt";
     private static final String PATH_TO_MANUAL_OUTPUT_VALUES = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\collections\\ManualOutput.txt";
@@ -27,14 +29,6 @@ public class CollectionTaskTest {
         arrayListFromManualInputValues = FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_INPUT_VALUES);
     }
 
-    private void fillingTreeNodes() {
-        treeNode.insert(1);
-        treeNode.insert(-1);
-        treeNode.insert(5);
-        treeNode.insert(8);
-        treeNode.insert(3);
-        treeNode.insert(134);
-    }
 
     private ArrayList<String> convertHashMapIntoArrayList(HashMap<String, Integer> hashMapToConvert) {
         ArrayList<String> dataFromHashMap = new ArrayList<>();
@@ -51,45 +45,52 @@ public class CollectionTaskTest {
         correctDataOutputValue = new ArrayList<>();
         manySpacesInputValue = new ArrayList<>();
         manySpacesOutputValue = new ArrayList<>();
+        treeNodeWithCorrectData = new TreeNode();
+        treeNodeWithOneNode = new TreeNode();
+        emptyTreeNode = new TreeNode();
+        treeNodeWithCorrectData.insert(1);
+        treeNodeWithCorrectData.insert(-1);
+        treeNodeWithCorrectData.insert(5);
+        treeNodeWithCorrectData.insert(8);
+        treeNodeWithCorrectData.insert(3);
+        treeNodeWithCorrectData.insert(134);
+        treeNodeWithOneNode.insert(1);
         correctDataInputValue.add("New My Lines In this tet");
         correctDataInputValue.add("Pop m4444 works or not");
         correctDataInputValue.add("next ProvS");
         correctDataOutputValue.add("New My In tet");
         correctDataOutputValue.add("Pop m4444 or not");
-        correctDataOutputValue.add("next ");
+        correctDataOutputValue.add("next");//TODO " " after words
         manySpacesInputValue.add("       ");
         manySpacesInputValue.add("   world    and  words  ");
-        manySpacesOutputValue.add("       ");
-        manySpacesOutputValue.add("   world    and   ");
+        manySpacesOutputValue.add("      ");
+        manySpacesOutputValue.add("   world    and  ");
     }
 
     @Before
     public void setUp() {
-        treeNode = new TreeNode();
+
         collectionTask = new CollectionTask();
     }
 
     @Test
     public void countNodesInEmptyTree() {
-        assertEquals(0, treeNode.countNodes());
-    }
-
-    @Test
-    public void countNodesInTreeWithOneNode() {
-        treeNode.insert(1);
-        assertEquals(1, treeNode.countNodes());
+        assertEquals(0, emptyTreeNode.countNodes());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void countNodesInTreeWithDuplicatedValue() {
-        treeNode.insert(1);
-        treeNode.insert(1);
+        treeNodeWithOneNode.insert(1);
     }
+    @Test
+    public void countNodesInTreeWithOneNode() {
+        assertEquals(1, treeNodeWithOneNode.countNodes());
+    }
+
 
     @Test
     public void countNodesInTreeWithCorrectDataValue() {
-        fillingTreeNodes();
-        assertEquals(6, collectionTask.countTheNumberOfNodes(treeNode));
+        assertEquals(6, collectionTask.countTheNumberOfNodes(treeNodeWithCorrectData));
     }
 
     @Test
