@@ -52,9 +52,9 @@ public class ChainOfResponsibilityTest {
     public void correctDataInput() {
         assertEquals(correctDataOutput.toString(), noteModule500.takeMoney(new Money(4225)));
     }
+
     @Test
-    public void issuedFromLastNoteModuleOutputTest()
-    {
+    public void issuedFromLastNoteModuleOutputTest() {
         assertEquals(issuedFromLastNoteModuleOutput.toString(), noteModule500.takeMoney(new Money(5)));
     }
 

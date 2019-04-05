@@ -12,6 +12,7 @@
         <module>tz</module>
         <module>Algorithmics</module>
         <module>patterns</module>
+        <module>http</module>
     </modules>
 
     <properties>
