@@ -6,12 +6,12 @@ public class DVDRom {
     public boolean hasData() {
         return data;
     }
-    void load()
-    {
-        data=true;
+
+    void load() {
+        data = true;
     }
-    void unload()
-    {
-        data=false;
+
+    void unload() {
+        data = false;
     }
 }

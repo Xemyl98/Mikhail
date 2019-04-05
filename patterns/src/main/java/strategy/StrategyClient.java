@@ -6,8 +6,8 @@ public class StrategyClient {
     public void setStrategy(Sorting strategy) {
         this.strategy = strategy;
     }
-    public void executeStrategy(int[]array)
+    public int[] executeStrategy(int[]array)
     {
-        strategy.sort(array);
+      return   strategy.sort(array);
     }
 }

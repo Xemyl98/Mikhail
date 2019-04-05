@@ -1,8 +1,18 @@
 package iterator;
 
 public class ConcreteAggregate implements Aggregate {
-    String[] tasks = {"task1,task2,task3,task4"};
+    private   String[] tasks;
+    public void setTasks(String[] tasks) {
+        this.tasks = tasks;
+    }
 
+    public String getTasks(Iterator iterator)
+    {
+        String collectedString="";
+        while (iterator.hasNext())
+            collectedString+=(String)iterator.next();
+        return collectedString;
+    }
     @Override
     public Iterator getIterator()
     {
@@ -14,6 +24,8 @@ public class ConcreteAggregate implements Aggregate {
         @Override
         public boolean hasNext()
         {
+            if(tasks==null)
+                throw new NullPointerException("Input String Uninitialized");
             if(index<tasks.length)
                 return true;
             return false;
