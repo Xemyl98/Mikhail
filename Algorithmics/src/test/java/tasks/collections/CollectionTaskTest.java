@@ -4,10 +4,14 @@ import model.tree.TreeNode;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import utility.collections.CollectionsUtilities;
 import utility.files.FilesUtilities;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,23 +19,20 @@ public class CollectionTaskTest {
     private static TreeNode treeNodeWithCorrectData;
     private static TreeNode treeNodeWithOneNode;
     private static TreeNode emptyTreeNode;
+    private static CollectionsUtilities collectionsUtilities;
     private CollectionTask collectionTask;
     private static final String PATH_TO_MANUAL_INPUT_VALUES = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\collections\\ManualInput.txt";
     private static final String PATH_TO_MANUAL_OUTPUT_VALUES = "C:\\Project\\yolkin\\algorithmics\\src\\main\\resources\\collections\\ManualOutput.txt";
-    private static ArrayList<String> correctDataInputValue;
-    private static ArrayList<String> correctDataOutputValue;
-    private static ArrayList<String> manySpacesInputValue;
-    private static ArrayList<String> manySpacesOutputValue;
-    private static ArrayList<String> arrayListFromManualInputValues;
-    private static HashMap<String, Integer> hashMapFromManualInputValues;
-
-    private static void fillingArrayList() {
-        arrayListFromManualInputValues = FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_INPUT_VALUES);
-    }
+    private static List<String> correctDataInputValue;
+    private static List<String> correctDataOutputValue;
+    private static List<String> manySpacesInputValue;
+    private static List<String> manySpacesOutputValue;
+    private static List<String> arrayListFromManualInputValues;
+    private static Map<String, Integer> hashMapWithDataFromFile;
 
 
-    private ArrayList<String> convertHashMapIntoArrayList(HashMap<String, Integer> hashMapToConvert) {
-        ArrayList<String> dataFromHashMap = new ArrayList<>();
+    private List<String> convertHashMapToArrayList(Map<String, Integer> hashMapFromManualInputValues) {
+        List<String> dataFromHashMap = new ArrayList<>();
         for (String key : hashMapFromManualInputValues.keySet()) {
             dataFromHashMap.add(key + "=" + hashMapFromManualInputValues.get(key));
         }
@@ -48,6 +49,7 @@ public class CollectionTaskTest {
         treeNodeWithCorrectData = new TreeNode();
         treeNodeWithOneNode = new TreeNode();
         emptyTreeNode = new TreeNode();
+        collectionsUtilities=new CollectionsUtilities();
         treeNodeWithCorrectData.insert(1);
         treeNodeWithCorrectData.insert(-1);
         treeNodeWithCorrectData.insert(5);
@@ -65,6 +67,7 @@ public class CollectionTaskTest {
         manySpacesInputValue.add("   world    and  words  ");
         manySpacesOutputValue.add("      ");
         manySpacesOutputValue.add("   world    and  ");
+        arrayListFromManualInputValues = FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_INPUT_VALUES);
     }
 
     @Before
@@ -82,6 +85,7 @@ public class CollectionTaskTest {
     public void countNodesInTreeWithDuplicatedValue() {
         treeNodeWithOneNode.insert(1);
     }
+
     @Test
     public void countNodesInTreeWithOneNode() {
         assertEquals(1, treeNodeWithOneNode.countNodes());
@@ -94,24 +98,23 @@ public class CollectionTaskTest {
     }
 
     @Test
-    public void deleteWordsEndingInSWithCorrectInputValue() {
-        assertEquals(correctDataOutputValue, collectionTask.deleteWordsEndingInS(correctDataInputValue));
+    public void deleteWordsEndingWithSFromArrayListWithCorrectDataValue() {
+        assertEquals(correctDataOutputValue, collectionTask.deleteWordsEndingWithS(correctDataInputValue,collectionsUtilities));
     }
 
     @Test
     public void inputArrayListWithManySpaces() {
-        assertEquals(manySpacesOutputValue, collectionTask.deleteWordsEndingInS(manySpacesInputValue));
+        assertEquals(manySpacesOutputValue, collectionTask.deleteWordsEndingWithS(manySpacesInputValue,collectionsUtilities));
     }
 
     @Test(expected = NullPointerException.class)
-    public void deleteWordsEndingInSWithInputValue() {
-        collectionTask.deleteWordsEndingInS(null);
+    public void deleteWordsEndingInSWithFromUninitializedArrayList() {
+        collectionTask.deleteWordsEndingWithS(null,collectionsUtilities);
     }
 
     @Test
-    public void calculateTheCountOfRepetitionsValuesIntoHashMap() {
-        fillingArrayList();
-        hashMapFromManualInputValues = collectionTask.calculateTheCountOfRepetitionsValuesIntoHashMap(arrayListFromManualInputValues);
-        assertEquals(FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_OUTPUT_VALUES), convertHashMapIntoArrayList(hashMapFromManualInputValues));
+    public void calculateTheCountOfDuplicationsValuesInHashMapWithDataFromFile() throws NoSuchAlgorithmException {
+        hashMapWithDataFromFile = (HashMap<String, Integer>) collectionTask.calculateTheCountOfDuplicationsValuesInHashMap(arrayListFromManualInputValues,collectionsUtilities);
+        assertEquals(FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_OUTPUT_VALUES), convertHashMapToArrayList(hashMapWithDataFromFile));
     }
 }

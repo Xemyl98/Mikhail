@@ -3,12 +3,11 @@ package tasks.files;
 import utility.files.FilesUtilities;
 
 class FileTask {
-    void getFilteredLogFile(String log, String filteredLog) {
-        FilesUtilities filesUtilities = new FilesUtilities();
-        filesUtilities.checkForAEmptyFile(log);
-        filesUtilities.readFromLogFile(log);
+    void getFileWithFilteredIpStatistics(String ipStatistics, String filteredIpStatistics,FilesUtilities filesUtilities) {
+        filesUtilities.checkForAEmptyFile(ipStatistics);
+        filesUtilities.readFromFileWithStatistics(ipStatistics);
         filesUtilities.removeIpPartFromCollection();
-        filesUtilities.filteredLog(filteredLog);
+        filesUtilities.getFilteredIpStatistics(filteredIpStatistics);
     }
 }
 

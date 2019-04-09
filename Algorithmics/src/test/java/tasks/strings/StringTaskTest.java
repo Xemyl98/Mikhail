@@ -1,13 +1,22 @@
 package tasks.strings;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import tasks.exceptions.InvalidArgumentException;
+import utility.strings.StringUtilities;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class StringTaskTest {
-    private tasks.strings.StringTask stringTask;
+    private StringTask stringTask;
+    private static StringUtilities stringUtilities;
+
+    @BeforeClass
+    public static void beforeClass() {
+        stringUtilities = new StringUtilities();
+    }
 
     @Before
     public void setUp() {
@@ -15,64 +24,65 @@ public class StringTaskTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void removingSpacesOfEmptyString() {
-        stringTask.removingSpacesInTheEnteringSpace("");
+    public void removingSpacesFromEmptyString() {
+        stringTask.removeSpacesInTheEnteringSpace("", stringUtilities);
     }
 
     @Test(expected = NullPointerException.class)
-    public void cyclicShiftOfEmptyString() throws InvalidArgumentException {
-        stringTask.cyclicShiftStringLooking("", "");
+    public void cyclicShiftInEmptyString() throws InvalidArgumentException {
+        stringTask.cyclicShiftStringSearch("", "", stringUtilities);
     }
 
     @Test(expected = NullPointerException.class)
-    public void removingSpacesOfUninitializedString() {
-        stringTask.removingSpacesInTheEnteringSpace(null);
+    public void removingSpacesInUninitializedString() {
+        stringTask.removeSpacesInTheEnteringSpace(null, stringUtilities);
     }
 
     @Test(expected = NullPointerException.class)
-    public void cyclicShiftOfUninitializedString() throws InvalidArgumentException {
-        stringTask.cyclicShiftStringLooking(null, null);
+    public void cyclicShiftInUninitializedString() throws InvalidArgumentException {
+        stringTask.cyclicShiftStringSearch(null, null, stringUtilities);
     }
 
     @Test(expected = InvalidArgumentException.class)
-    public void incorrectSizeStringForCyclicMatching() throws InvalidArgumentException {
-        stringTask.cyclicShiftStringLooking("dsf", "dsfdsf");
+    public void cyclicShiftInAStringWithIncorrectLength() throws InvalidArgumentException {
+        stringTask.cyclicShiftStringSearch("dsf", "dsfdsf", stringUtilities);
     }
 
     @Test
-    public void inputMismatchedStringsInCyclicShift() throws InvalidArgumentException {
-        assertEquals(null, stringTask.cyclicShiftStringLooking("bcd ifa", "abcs if"));
+    public void negativeCyclicShiftTest() throws InvalidArgumentException {
+        assertNull(stringTask.cyclicShiftStringSearch("bcd ifa", "abcs if", stringUtilities));
     }
 
     @Test
-    public void correctStringValueForCyclicMatching() throws InvalidArgumentException {
-        assertEquals("bcd ifa", stringTask.cyclicShiftStringLooking("bcd ifa", "abcd if"));
+    public void checkCyclicShiftStringSearch() throws InvalidArgumentException {
+        assertEquals("bcd ifa", stringTask.cyclicShiftStringSearch("bcd ifa", "abcd if", stringUtilities));
     }
 
     @Test
-    public void removingSpacesInStringWithOneSpace() {
-        assertEquals("", stringTask.removingSpacesInTheEnteringSpace(" "));
+    public void removeSpacesInStringWithOneSpace() {
+        assertEquals("", stringTask.removeSpacesInTheEnteringSpace(" ", stringUtilities));
     }
 
     @Test
     public void removingSpacesInStringConsistingOfTheSpaces() {
-        assertEquals("", stringTask.removingSpacesInTheEnteringSpace("      "));
+        assertEquals("", stringTask.removeSpacesInTheEnteringSpace("      ", stringUtilities));
     }
 
     @Test
-    public void removingSpacesInStringWithSpaceOnBeginningAndEndOfLine() {
-        assertEquals("UsualString", stringTask.removingSpacesInTheEnteringSpace(" Usual String "));
+    public void removingSpacesFromStringWithSpaceOnFirstAndLastElementsOfLine() {
+        assertEquals("UsualString", stringTask.removeSpacesInTheEnteringSpace(" Usual String ", stringUtilities));
     }
 
     @Test
-    public void removingSpacesInStringWithMultipleSpacesBetweenWords() {
-        assertEquals("UsualStringWithMultipleSpaces", stringTask.removingSpacesInTheEnteringSpace("Usual  String   With   Multiple   Spaces"));
+    public void removingSpacesFromStringWithMultipleSpacesBetweenWords() {
+        assertEquals("UsualStringWithMultipleSpaces", stringTask.removeSpacesInTheEnteringSpace("Usual  String   With   Multiple   Spaces", stringUtilities));
     }
 
     @Test
-    public void defaultUserStringInput() {
-        String outputString = stringTask.removingSpacesInTheEnteringSpace("English texts for beginners to practice reading and comprehension online and for free. Practicing your comprehension of written English will both improve your vocabulary and understanding of grammar and word order.");
+    public void removeSpacesInCorrectString() {
+        String outputText = "English texts for beginners to practice reading and comprehension online and for free. Practicing your comprehension of written English will both improve your vocabulary and understanding of grammar and word order.";
         String expectedString = "Englishtextsforbeginnerstopracticereadingandcomprehensiononlineandforfree.PracticingyourcomprehensionofwrittenEnglishwillbothimproveyourvocabularyandunderstandingofgrammarandwordorder.";
-        assertEquals(expectedString, outputString);
+        outputText = stringTask.removeSpacesInTheEnteringSpace(outputText, stringUtilities);
+        assertEquals(expectedString, outputText);
     }
 }

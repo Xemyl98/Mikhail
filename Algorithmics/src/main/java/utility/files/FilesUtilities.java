@@ -12,15 +12,15 @@ public class FilesUtilities {
     private Map<String, Integer> time = new TreeMap<>();
     private Map<String, Integer> day = new TreeMap<>();
     private Map<String, Integer> maxTime = new TreeMap<>();
-    private ArrayList<String> theNamesOfTheDaysOfTheWeek = new ArrayList<>();
+    private List<String> theNamesOfTheDaysOfTheWeek = new ArrayList<>();
 
     public FilesUtilities() {
         fillingTheArrayListWithTheNamesOfTheDaysOfTheWeek();
     }
 
-    public static ArrayList<String> readFromFileIntoArrayList(String path) {
+    public static List<String> readFromFileIntoArrayList(String path) {
         File logfile = new File(path);
-        ArrayList<String> dataFromFiles = new ArrayList<>();
+        List<String> dataFromFiles = new ArrayList<>();
         boolean fileExist = true;
         try {
             if (!logfile.exists())
@@ -39,28 +39,7 @@ public class FilesUtilities {
         return dataFromFiles;
     }
 
-    public static HashMap<String, Integer> readFromFileIntoHashMap(String path) {
-        File logfile = new File(path);
-        HashMap<String, Integer> dataFromFiles = new HashMap<>();
-        boolean fileExist = true;
-        try {
-            if (!logfile.exists())
-                fileExist = logfile.createNewFile();
-            if (fileExist) {
-                try (BufferedReader in = new BufferedReader(new FileReader(logfile.getAbsoluteFile()))) {
-                    String s;
-                    while ((s = in.readLine()) != null)
-                        dataFromFiles.put(s, 1);
-                }
-            } else
-                throw new IOException();
-        } catch (IOException e) {
-            log.info(e.toString());
-        }
-        return dataFromFiles;
-    }
-
-    public static void writeInFileArrayList(String path, ArrayList<String> inputArrayList) {
+    public static void writeInFileArrayList(String path, List<String> inputArrayList) {
         try (FileWriter writer = new FileWriter(path)) {
 
             for (String datum : inputArrayList) writer.write(datum + "\n");
@@ -80,8 +59,8 @@ public class FilesUtilities {
         }
     }
 
-    public void readFromLogFile(String path) {
-        ArrayList<String> dataFromFile;
+    public void readFromFileWithStatistics(String path) {
+        List<String> dataFromFile;
         dataFromFile = readFromFileIntoArrayList(path);
         for (String lineFromFile : dataFromFile) {
             checkForACorrectLineInput(lineFromFile);
@@ -97,8 +76,8 @@ public class FilesUtilities {
         maxVisitFromOneIp(time);
     }
 
-    public void filteredLog(String path) {
-        ArrayList<String> outputData = new ArrayList<>();
+    public void getFilteredIpStatistics(String path) {
+        List<String> outputData = new ArrayList<>();
         String[] mostPopularDayWithoutIp = collectionWithoutIp(day);
         String[] mostPopularTimeWithoutIp = collectionWithoutIp(time);
         int i = 0;
@@ -132,8 +111,7 @@ public class FilesUtilities {
             checkForCorrectTime(lineFromFile);
             checkForCorrectDayOfWeek(lineFromFile);
         } catch (InvalidArgumentException e) {
-            log.info("Incorrect Data Input");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Incorrect Data Input");
         }
     }
 
@@ -188,9 +166,9 @@ public class FilesUtilities {
 
     private void checkForCorrectTimeLimits(String lineFromFile) {
         try {
-            int checkHours = Integer.valueOf(getSubTime(lineFromFile));
-            int checkMinutes = Integer.valueOf(deletePartOfLine(lineFromFile, 2).substring(3, 5));
-            int checkSeconds = Integer.valueOf(deletePartOfLine(lineFromFile, 2).substring(6, 8));
+            int checkHours = Integer.parseInt(getSubTime(lineFromFile));
+            int checkMinutes = Integer.parseInt(deletePartOfLine(lineFromFile, 2).substring(3, 5));
+            int checkSeconds = Integer.parseInt(deletePartOfLine(lineFromFile, 2).substring(6, 8));
             if (checkHours > 23 || checkHours < 0)
                 throw new InvalidArgumentException("Incorrect Hours");
             if (checkMinutes > 59 || checkMinutes < 0)
@@ -271,8 +249,6 @@ public class FilesUtilities {
         for (int i = 0; i < deleteDataInCollection.length; i++)
             if (deleteDataInCollection[i] != null)
                 collection.remove(deleteDataInCollection[i]);
-            else
-                continue;
 
     }
 

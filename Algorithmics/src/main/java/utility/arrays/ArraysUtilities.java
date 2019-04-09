@@ -7,42 +7,41 @@ public class ArraysUtilities {
 
     public void checkForAUninitializedArrayInput(int[] oneDimensionalArray) {
         if (oneDimensionalArray == null)
-            throw new NullPointerException();
+            throw new NullPointerException("not initialized array passed");
     }
 
     public void checkForAUninitializedArrayInput(int[][] twoDimensionalArray) {
         if (twoDimensionalArray == null)
-            throw new NullPointerException();
+            throw new NullPointerException("not initialized array passed");
     }
 
-    public void checkForAIncorrectSizeOfArray(int arraySize, int minimumArraySize) {
+    public void checkArraySize(int arraySize, int minimumArraySize) {
         if (arraySize < minimumArraySize)
             throw new ArrayIndexOutOfBoundsException();
     }
 
-    public void checkForAIncorrectSizeOfArray(int arraySize, int secondDimensionArraySize, int minimumArraySize, int minimumSecondDimensionArraySize) {
+    public void checkArraySize(int arraySize, int secondDimensionArraySize, int minimumArraySize, int minimumSecondDimensionArraySize) {
         if (arraySize < minimumArraySize || secondDimensionArraySize < minimumSecondDimensionArraySize)
             throw new ArrayIndexOutOfBoundsException();
     }
 
-    public int[] searchForIdenticalValuesInArrays(int[] arrayForSplittingIntoPairs, int[] arrayForSplittingIntoThrees) {
+    public int[] searchIdenticalValueInArrays(int[] arrayForSplittingIntoPairs, int[] arrayForSplittingIntoThrees) {
         arrayForSplittingIntoPairs = getTheSumOfAllPairsInTheArray(arrayForSplittingIntoPairs);
-        arrayForSplittingIntoThrees = getTheSumOfEachTripleInTheArray(arrayForSplittingIntoThrees);
+        arrayForSplittingIntoThrees = getTheSumOfEachTripleOfValuesInTheArray(arrayForSplittingIntoThrees);
         ArrayList<Integer> matchesOfArraysWithoutDuplicates = new ArrayList<>();
         for (int i = 0; i < arrayForSplittingIntoPairs.length; i++)
             for (int j = 0; j < arrayForSplittingIntoThrees.length; j++) {
-                if (arrayForSplittingIntoPairs[i] == arrayForSplittingIntoThrees[j])
-                    if (!matchesOfArraysWithoutDuplicates.contains(arrayForSplittingIntoPairs[i]))
+                if (arrayForSplittingIntoPairs[i] == arrayForSplittingIntoThrees[j]&&(!matchesOfArraysWithoutDuplicates.contains(arrayForSplittingIntoPairs[i])))
                         matchesOfArraysWithoutDuplicates.add(arrayForSplittingIntoPairs[i]);
             }
         return convertArrayListToInteger(matchesOfArraysWithoutDuplicates);
     }
 
-    public int[][] getAnArrayOfMovingTheZeroToEndOfTheLine(int[][] arrayToSortByZero) {
+    public int[][] getAnArrayOfMovingZeroElementsToEndOfLine(int[][] arrayToSortByZero) {
         for (int rowIndex = 0; rowIndex < arrayToSortByZero.length; rowIndex++)
             for (int columnIndex = 0; columnIndex < arrayToSortByZero[0].length - 1; columnIndex++)
                 if (arrayToSortByZero[rowIndex][columnIndex] == 0)
-                    arrayToSortByZero = movingZeroElementToEndLineOfArray(arrayToSortByZero, rowIndex, columnIndex, arrayToSortByZero[0].length);
+                    movingZeroElementToEndLineOfArray(arrayToSortByZero, rowIndex, columnIndex, arrayToSortByZero[0].length);
         return arrayToSortByZero;
     }
 
@@ -66,7 +65,7 @@ public class ArraysUtilities {
     }
 
 
-    private int[] getTheSumOfEachTripleInTheArray(int[] arrayForSplittingIntoThrees) {
+    private int[] getTheSumOfEachTripleOfValuesInTheArray(int[] arrayForSplittingIntoThrees) {
         int n = 0;
         int[] sum = new int[getNumberOfPossiblePermutations(arrayForSplittingIntoThrees.length, 3)];
         for (int i = 0; i < getNumberOfPossiblePermutations(arrayForSplittingIntoThrees.length, 3) - 2; i++)
@@ -100,20 +99,18 @@ public class ArraysUtilities {
         return calculationResult;
     }
 
-    private int[][] movingZeroElementToEndLineOfArray(int[][] arrayToSortByZero, int rowIndex, int columnIndex, int countElementsOnArray) {
+    private void movingZeroElementToEndLineOfArray(int[][] arrayToSortByZero, int rowIndex, int columnIndex, int countElementsOnArray) {
         for (int k = columnIndex + 1; k < countElementsOnArray; k++) {
             if (arrayToSortByZero[rowIndex][k] != 0) {
-                arrayToSortByZero = movementOfNeighboringElements(arrayToSortByZero, rowIndex, columnIndex, k);
+                 movementOfNeighboringElements(arrayToSortByZero, rowIndex, columnIndex, k);
                 break;
             }
         }
-        return arrayToSortByZero;
     }
 
-    private int[][] movementOfNeighboringElements(int[][] arrayToSortByZero, int i, int j, int k) {
+    private void movementOfNeighboringElements(int[][] arrayToSortByZero, int i, int j, int k) {
         int temp = arrayToSortByZero[i][k];
         arrayToSortByZero[i][k] = arrayToSortByZero[i][j];
         arrayToSortByZero[i][j] = temp;
-        return arrayToSortByZero;
     }
 }

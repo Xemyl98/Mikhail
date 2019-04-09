@@ -12,11 +12,12 @@
         <module>tz</module>
         <module>Algorithmics</module>
         <module>patterns</module>
-        <module>http</module>
+        <module>web</module>
     </modules>
 
     <properties>
-        <sonar.exclusions>**/ExampleException.java</sonar.exclusions>
+        <sonar.exclusions>**/exceptions/*</sonar.exclusions>
+
     </properties>
 
     <build>
