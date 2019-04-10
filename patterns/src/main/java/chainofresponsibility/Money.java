@@ -1,4 +1,4 @@
-package сhainofresponsibility;
+package chainofresponsibility;
 
 public class Money {
     private int sum;

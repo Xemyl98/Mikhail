@@ -67,7 +67,7 @@ public class CollectionTaskTest {
         manySpacesInputValue.add("   world    and  words  ");
         manySpacesOutputValue.add("      ");
         manySpacesOutputValue.add("   world    and  ");
-        arrayListFromManualInputValues = FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_INPUT_VALUES);
+        arrayListFromManualInputValues = FilesUtilities.readDataFromFileToArrayList(PATH_TO_MANUAL_INPUT_VALUES);
     }
 
     @Before
@@ -115,6 +115,6 @@ public class CollectionTaskTest {
     @Test
     public void calculateTheCountOfDuplicationsValuesInHashMapWithDataFromFile() throws NoSuchAlgorithmException {
         hashMapWithDataFromFile = (HashMap<String, Integer>) collectionTask.calculateTheCountOfDuplicationsValuesInHashMap(arrayListFromManualInputValues,collectionsUtilities);
-        assertEquals(FilesUtilities.readFromFileIntoArrayList(PATH_TO_MANUAL_OUTPUT_VALUES), convertHashMapToArrayList(hashMapWithDataFromFile));
+        assertEquals(FilesUtilities.readDataFromFileToArrayList(PATH_TO_MANUAL_OUTPUT_VALUES), convertHashMapToArrayList(hashMapWithDataFromFile));
     }
 }

@@ -8,6 +8,7 @@ public class FactoryMethod {
         }
         else if(maker.equals("Rome"))
             return new RomeWatchMaker();
+        else
         throw new RuntimeException("Not Supported Line Of Watch "+maker);
     }
 }

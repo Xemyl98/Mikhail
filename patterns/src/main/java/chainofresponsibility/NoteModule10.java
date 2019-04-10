@@ -1,4 +1,4 @@
-package сhainofresponsibility;
+package chainofresponsibility;
 
 public class NoteModule10 extends NoteModule {
     String takeMoney(Money money) {

@@ -34,7 +34,7 @@ public class FileTaskTest {
     @Test
     public void getFilteredIpStatisticsFromFileWithCorrectDataValue() {
         fileTask.getFileWithFilteredIpStatistics(STATISTICS, FILTERED_IP_STATISTICS,filesUtilities);
-        assertEquals(FilesUtilities.readFromFileIntoArrayList(FILTERED_IP_STATISTICS), FilesUtilities.readFromFileIntoArrayList(FILTERED_IP_STATISTICS));
+        assertEquals(FilesUtilities.readDataFromFileToArrayList(FILTERED_IP_STATISTICS), FilesUtilities.readDataFromFileToArrayList(FILTERED_IP_STATISTICS));
     }
 
     @Test(expected = NullPointerException.class)
@@ -45,7 +45,7 @@ public class FileTaskTest {
     @Test
     public void getFilteredIpStatisticsFromFileWithOneIpRepeatedManyTimes() {
         fileTask.getFileWithFilteredIpStatistics(ONE_IP_TEST, ONE_IP_TEST_RESULT,filesUtilities);
-        assertEquals(FilesUtilities.readFromFileIntoArrayList(ONE_IP_TEST_RESULT), FilesUtilities.readFromFileIntoArrayList(ONE_IP_TEST_RESULT));
+        assertEquals(FilesUtilities.readDataFromFileToArrayList(ONE_IP_TEST_RESULT), FilesUtilities.readDataFromFileToArrayList(ONE_IP_TEST_RESULT));
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -1,6 +1,7 @@
-package сhainofresponsibility;
+package chainofresponsibility;
 
 public class Note {
+    private Note(){}
     public static final int R5=5;
     public static final int R10=10;
     public static final int R20=20;

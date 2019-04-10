@@ -1,4 +1,4 @@
-package сhainofresponsibility;
+package chainofresponsibility;
 
 public class ATM {
     private static StringBuilder payoutResult=new StringBuilder();

@@ -1,4 +1,4 @@
-package сhainofresponsibility;
+package chainofresponsibility;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,6 +11,7 @@ public class ChainOfResponsibilityTest {
     private static NoteModule500 noteModule500;
     private static StringBuilder correctDataOutput;
     private static StringBuilder issuedFromLastNoteModuleOutput;
+    private static StringBuilder issuedFromNoteModule10Output;
     private static ATM atm;
 
     @BeforeClass
@@ -22,6 +23,9 @@ public class ChainOfResponsibilityTest {
                         "Issued 1 bills in denominations of 5\n");
         issuedFromLastNoteModuleOutput = new StringBuilder(
                 "Issued 1 bills in denominations of 5\n"
+        );
+        issuedFromNoteModule10Output = new StringBuilder(
+                "Issued 1 bills in denominations of 10\n"
         );
         NoteModule5 noteModule5 = new NoteModule5();
         NoteModule10 noteModule10 = new NoteModule10();
@@ -57,10 +61,15 @@ public class ChainOfResponsibilityTest {
     public void issuedFromLastNoteModuleOutputTest() {
         assertEquals(issuedFromLastNoteModuleOutput.toString(), noteModule500.takeMoney(new Money(5)));
     }
+    @Test
+    public void issuedFromNoteModule10OutputTest() {
+        assertEquals(issuedFromNoteModule10Output.toString(), noteModule500.takeMoney(new Money(10)));
+    }
 
     @Test(expected = RuntimeException.class)
     public void inputUnsupportedValueTest() {
         noteModule500.takeMoney(new Money(5500));
     }
+
 
 }

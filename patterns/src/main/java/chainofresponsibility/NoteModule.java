@@ -1,4 +1,4 @@
-package сhainofresponsibility;
+package chainofresponsibility;
 
 public abstract class NoteModule {
     protected NoteModule next;

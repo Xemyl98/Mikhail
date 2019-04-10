@@ -1,17 +1,17 @@
 package facade;
 
 public class Power {
-    private boolean power = false;
+    private boolean computerPower = false;
     public boolean hasPower()
     {
-        return power;
+        return computerPower;
     }
     public void powerOn()
     {
-        power=true;
+        computerPower =true;
     }
     public void powerOff()
     {
-        power=false;
+        computerPower =false;
     }
 }

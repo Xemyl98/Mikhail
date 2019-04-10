@@ -30,7 +30,7 @@ public class CollectionsUtilities {
     public Map<String, Integer> getHashMapWithDuplicateCountValue(List<String> arrayListWithCountDuplicatesValue) throws NoSuchAlgorithmException {
         if (arrayListWithCountDuplicatesValue.isEmpty()) {
             writeRandomValuesIntoFile(100, 10);
-            arrayListWithCountDuplicatesValue = FilesUtilities.readFromFileIntoArrayList(RANDOM_VALUES);
+            arrayListWithCountDuplicatesValue = FilesUtilities.readDataFromFileToArrayList(RANDOM_VALUES);
             return getCountOfDuplicatesAfterRandomGeneration(arrayListWithCountDuplicatesValue);
         } else
             return getCountOfDuplicatesAfterRandomGeneration(arrayListWithCountDuplicatesValue);

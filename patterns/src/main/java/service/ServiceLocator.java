@@ -1,6 +1,7 @@
 package service;
 
 public class ServiceLocator {
+    private ServiceLocator(){}
     private static Cache cache=new Cache();
     public static Service getService (String serviceName)
     {

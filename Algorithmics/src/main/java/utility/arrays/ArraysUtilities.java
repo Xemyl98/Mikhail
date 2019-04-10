@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class ArraysUtilities {
 
 
-    public void checkForAUninitializedArrayInput(int[] oneDimensionalArray) {
+    public void ArrayIsUninitialized(int[] oneDimensionalArray) {
         if (oneDimensionalArray == null)
             throw new NullPointerException("not initialized array passed");
     }
 
-    public void checkForAUninitializedArrayInput(int[][] twoDimensionalArray) {
+    public void ArrayIsUninitialized(int[][] twoDimensionalArray) {
         if (twoDimensionalArray == null)
             throw new NullPointerException("not initialized array passed");
     }
@@ -21,7 +21,7 @@ public class ArraysUtilities {
     }
 
     public void checkArraySize(int arraySize, int secondDimensionArraySize, int minimumArraySize, int minimumSecondDimensionArraySize) {
-        if (arraySize < minimumArraySize || secondDimensionArraySize < minimumSecondDimensionArraySize)
+        if (arraySize != minimumArraySize || secondDimensionArraySize != minimumSecondDimensionArraySize)
             throw new ArrayIndexOutOfBoundsException();
     }
 

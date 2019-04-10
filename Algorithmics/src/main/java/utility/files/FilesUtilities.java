@@ -18,7 +18,7 @@ public class FilesUtilities {
         fillingTheArrayListWithTheNamesOfTheDaysOfTheWeek();
     }
 
-    public static List<String> readFromFileIntoArrayList(String path) {
+    public static List<String> readDataFromFileToArrayList(String path) {
         File logfile = new File(path);
         List<String> dataFromFiles = new ArrayList<>();
         boolean fileExist = true;
@@ -61,17 +61,15 @@ public class FilesUtilities {
 
     public void readFromFileWithStatistics(String path) {
         List<String> dataFromFile;
-        dataFromFile = readFromFileIntoArrayList(path);
+        dataFromFile = readDataFromFileToArrayList(path);
         for (String lineFromFile : dataFromFile) {
-            checkForACorrectLineInput(lineFromFile);
+            validationOfLine(lineFromFile);
             collectionFilling(lineFromFile);
         }
     }
 
 
     public void removeIpPartFromCollection() {
-        if (day.isEmpty() || time.isEmpty())
-            throw new NullPointerException();
         maxVisitFromOneIp(day);
         maxVisitFromOneIp(time);
     }
@@ -89,27 +87,27 @@ public class FilesUtilities {
         writeInFileArrayList(path, outputData);
     }
 
-    public void checkForAEmptyFile(String path) {
-        if (readFromFileIntoArrayList(path).isEmpty())
-            throw new NullPointerException();
+    public void fileIsEmpty(String path) {
+        if (readDataFromFileToArrayList(path).isEmpty())
+            throw new NullPointerException("File is empty");
     }
 
-    private void collectionFilling(String line) {
-        maxTimeCollectionFilling(getSubTime(line));
-        if (ipCollectionContainsKey(getSubIp(line))) {
-            ipCollectionFilling(getSubIp(line));
-            dayCollectionFilling(getSubIp(line), getSubDay(line));
-            timeCollectionFilling(getSubIp(line), getSubTime(line));
+        private void collectionFilling(String lineFromFile) {
+        maxTimeCollectionFilling(getSubTime(lineFromFile));
+        if (ipCollectionContainsKey(getSubIp(lineFromFile))) {
+            ipCollectionFilling(getSubIp(lineFromFile));
+            dayCollectionFilling(getSubIp(lineFromFile), getSubDay(lineFromFile));
+            timeCollectionFilling(getSubIp(lineFromFile), getSubTime(lineFromFile));
         } else
-            insertUniqueValuesIntoCollection(getSubIp(line), getSubDay(line), getSubTime(line));
+            insertUniqueValuesIntoCollection(getSubIp(lineFromFile), getSubDay(lineFromFile), getSubTime(lineFromFile));
     }
 
-    private void checkForACorrectLineInput(String lineFromFile) {
+    private void validationOfLine(String lineFromFile) {
         try {
-            checkForCorrectNumberOfSpaces(lineFromFile);
-            checkForCorrectIp(lineFromFile);
-            checkForCorrectTime(lineFromFile);
-            checkForCorrectDayOfWeek(lineFromFile);
+            checkNumberOfSpacesInLineFromFile(lineFromFile);
+            checkIpInLineFromFile(lineFromFile);
+            checkTimeInLineFromFile(lineFromFile);
+            checkDayOfWeekInLineFromFile(lineFromFile);
         } catch (InvalidArgumentException e) {
             throw new IllegalArgumentException("Incorrect Data Input");
         }
@@ -125,7 +123,7 @@ public class FilesUtilities {
         theNamesOfTheDaysOfTheWeek.add("Sunday");
     }
 
-    private void checkForCorrectNumberOfSpaces(String lineFromFile) throws InvalidArgumentException {
+    private void checkNumberOfSpacesInLineFromFile(String lineFromFile) throws InvalidArgumentException {
         char[] lineToCountTheNumberOfSpaces = lineFromFile.toCharArray();
         int countOfSpaces = 0;
         for (int i = 0; i < lineToCountTheNumberOfSpaces.length; i++) {
@@ -136,7 +134,7 @@ public class FilesUtilities {
             throw new InvalidArgumentException("Missing part of the data");
     }
 
-    private void checkForCorrectIp(String lineFromFile) throws InvalidArgumentException {
+    private void checkIpInLineFromFile(String lineFromFile) throws InvalidArgumentException {
         char[] lineToCountPointsInIp = getSubIp(lineFromFile).toCharArray();
         int countOfPoints = 0;
         for (int i = 0; i < lineToCountPointsInIp.length; i++) {
@@ -147,13 +145,13 @@ public class FilesUtilities {
             throw new InvalidArgumentException("Incorrect ip");
     }
 
-    private void checkForCorrectTime(String lineFromFile) throws InvalidArgumentException {
-        checkForCorrectTimeLimits(lineFromFile);
-        checkForCorrectCountOfColonsInTime(lineFromFile);
+    private void checkTimeInLineFromFile(String lineFromFile) throws InvalidArgumentException {
+        checkTimeLimits(lineFromFile);
+        checkCountOfColonsInTime(lineFromFile);
 
     }
 
-    private void checkForCorrectCountOfColonsInTime(String lineFromFile) throws InvalidArgumentException {
+    private void checkCountOfColonsInTime(String lineFromFile) throws InvalidArgumentException {
         char[] lineToCountColonInTime = deletePartOfLine(lineFromFile, 2).toCharArray();
         int countOfColons = 0;
         for (int i = 0; i < lineToCountColonInTime.length; i++) {
@@ -164,7 +162,7 @@ public class FilesUtilities {
             throw new InvalidArgumentException("Invalid Counts Of Colons");
     }
 
-    private void checkForCorrectTimeLimits(String lineFromFile) {
+    private void checkTimeLimits(String lineFromFile) {
         try {
             int checkHours = Integer.parseInt(getSubTime(lineFromFile));
             int checkMinutes = Integer.parseInt(deletePartOfLine(lineFromFile, 2).substring(3, 5));
@@ -181,7 +179,7 @@ public class FilesUtilities {
 
     }
 
-    private void checkForCorrectDayOfWeek(String lineFromFile) throws InvalidArgumentException {
+    private void checkDayOfWeekInLineFromFile(String lineFromFile) throws InvalidArgumentException {
 
         if (!theNamesOfTheDaysOfTheWeek.contains(getSubDay(lineFromFile)))
             throw new InvalidArgumentException("Invalid Day Of Week");
