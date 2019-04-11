@@ -12,6 +12,8 @@ public class Delete {
                 "Content-Type", "application/x-www-form-urlencoded");
         httpCon.setRequestMethod("DELETE");
         httpCon.connect();
+
         return httpCon.getResponseMessage();
+
     }
 }

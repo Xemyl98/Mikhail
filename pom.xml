@@ -10,9 +10,10 @@
 
     <modules>
         <module>tz</module>
-        <module>Algorithmics</module>
+        <module>algorithmics</module>
         <module>patterns</module>
         <module>web</module>
+        <module>voiceauthentication</module>
     </modules>
 
     <properties>

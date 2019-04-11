@@ -92,7 +92,7 @@ public class FilesUtilities {
             throw new NullPointerException("File is empty");
     }
 
-        private void collectionFilling(String lineFromFile) {
+    private void collectionFilling(String lineFromFile) {
         maxTimeCollectionFilling(getSubTime(lineFromFile));
         if (ipCollectionContainsKey(getSubIp(lineFromFile))) {
             ipCollectionFilling(getSubIp(lineFromFile));

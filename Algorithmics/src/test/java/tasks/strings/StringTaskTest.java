@@ -70,7 +70,7 @@ public class StringTaskTest {
 
     @Test
     public void removingSpacesFromStringWithSpaceOnFirstAndLastElementsOfLine() {
-        assertEquals("UsualString", stringTask.removeSpacesInTheEnteringSpace(" Usual String ", stringUtilities));
+        assertEquals("Usual\nString", stringTask.removeSpacesInTheEnteringSpace(" Usual\n String ", stringUtilities));
     }
 
     @Test
