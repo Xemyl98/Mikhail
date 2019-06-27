@@ -1,18 +1,18 @@
 package tasks.strings;
 
 import tasks.exceptions.InvalidArgumentException;
-import utility.strings.StringUtilities;
+import utils.strings.StringUtils;
 
 class StringTask {
-    String removeSpacesInTheEnteringSpace(String textToRemoveSpace,StringUtilities stringUtilities) {
-        stringUtilities.validationOfString(textToRemoveSpace);
-        return stringUtilities.removeSpacesInString(textToRemoveSpace);
+    String removeSpacesInTheEnteringSpace(String textToRemoveSpace) {
+        StringUtils.validationOfString(textToRemoveSpace);
+        return StringUtils.removeSpacesInString(textToRemoveSpace);
     }
 
-    String cyclicShiftStringSearch(String sampleLine, String stringToCompare,StringUtilities stringUtilities) throws InvalidArgumentException {
-        stringUtilities.validationOfString(sampleLine);
-        stringUtilities.validationOfString(stringToCompare);
-        stringUtilities.lengthOfTwoLineIsSame(sampleLine, stringToCompare);
-        return stringUtilities.searchMatchesWithCyclicShift(sampleLine, stringToCompare);
+    String cyclicShiftStringSearch(String sampleLine, String stringToCompare) throws InvalidArgumentException {
+        StringUtils.validationOfString(sampleLine);
+        StringUtils.validationOfString(stringToCompare);
+        StringUtils.lengthOfTwoLineIsSame(sampleLine, stringToCompare);
+        return StringUtils.searchMatchesWithCyclicShift(sampleLine, stringToCompare);
     }
 }

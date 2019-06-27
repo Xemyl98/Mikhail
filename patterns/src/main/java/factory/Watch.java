@@ -1,5 +1,5 @@
 package factory;
 
 public interface Watch {
-    String  showTime();
+    String showTime();
 }

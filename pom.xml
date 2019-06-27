@@ -13,13 +13,16 @@
         <module>algorithmics</module>
         <module>patterns</module>
         <module>web</module>
-        <module>voiceauthentication</module>
+        <module>oop</module>
+        <module>selenium</module>
+        <module>voiceauthentification</module>
     </modules>
 
     <properties>
         <sonar.exclusions>**/exceptions/*</sonar.exclusions>
 
     </properties>
+
 
     <build>
         <plugins>
@@ -33,6 +36,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>

@@ -25,7 +25,7 @@ public class RequestsTest {
 
     @Test
     public void positiveGetTest() throws IOException {
-        assertEquals("OK", Get.getRequest(getUrl));
+        assertEquals("GET", Get.getRequest(getUrl));
     }
 
     @Test

@@ -1,49 +1,54 @@
 
 .drop_vert_menu {
-    list-style-type: none; 
+    list-style-type: none;
     width: 198px;
-    margin: 20; 
+    margin: 20;
     padding: 0;
 }
 
-.drop_vert_menu  ul {
-    list-style-type: none; 
+.drop_vert_menu ul {
+    list-style-type: none;
     width: 180px;
-    margin: 0; 
-    padding: 0; 
+    margin: 0;
+    padding: 0;
 }
-.drop_vert_menu > li{
-  position: relative; 
-  background: url(images/vert_css_menu_0.png) no-repeat 0 0; 
-  padding:10px 0px 10px 16px;
-  border-top: 5px solid #EDFCF1;
+
+.drop_vert_menu > li {
+    position: relative;
+    background: url(oop/vert_css_menu_0.png) no-repeat 0 0;
+    padding: 10px 0px 10px 16px;
+    border-top: 5px solid #EDFCF1;
 }
 
 .drop_vert_menu > li:hover {
-background: url(images/vert_css_menu_1.png) no-repeat 0 0;
-}
-.drop_vert_menu > li > a{
-  font-size:18px;
-  color: White;
-  text-decoration:none;
+    background: url(oop/vert_css_menu_1.png) no-repeat 0 0;
 }
 
-.font_blue_18{
-	color:#0066FF; 
-	font-size:22px; 
-	font-weight:bold;
-	font-family:"Courier New", Courier, monospace
+.drop_vert_menu > li > a {
+    font-size: 18px;
+    color: White;
+    text-decoration: none;
 }
-.font_small_lsilver
-{
-	font-family:"Courier New", Courier, monospace
+
+.font_blue_18 {
+    color: #0066FF;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace
 }
-#left_column{
-background-color:#EDFCF1; 
+
+.font_small_lsilver {
+    font-family: "Courier New", Courier, monospace
 }
-#center_col{
-background-color:#EDFCF1;
+
+#left_column {
+    background-color: #EDFCF1;
 }
-#center_table{
-background-color:#EDFCF1;
+
+#center_col {
+    background-color: #EDFCF1;
+}
+
+#center_table {
+    background-color: #EDFCF1;
 }

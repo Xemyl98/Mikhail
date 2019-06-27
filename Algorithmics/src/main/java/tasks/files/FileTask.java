@@ -1,13 +1,13 @@
 package tasks.files;
 
-import utility.files.FilesUtilities;
+import utils.files.FileUtils;
 
 class FileTask {
-    void getFileWithFilteredIpStatistics(String ipStatistics, String filteredIpStatistics,FilesUtilities filesUtilities) {
-        filesUtilities.fileIsEmpty(ipStatistics);
-        filesUtilities.readFromFileWithStatistics(ipStatistics);
-        filesUtilities.removeIpPartFromCollection();
-        filesUtilities.getFilteredIpStatistics(filteredIpStatistics);
+    public void getFileWithFilteredIpStatistics(String ipStatistics, String filteredIpStatistics) {
+        FileUtils.fileIsEmpty(ipStatistics);
+        FileUtils.readFromFileWithStatistics(ipStatistics);
+        FileUtils.removeIpPartFromCollection();
+        FileUtils.getFilteredIpStatistics(filteredIpStatistics);
     }
 }
 

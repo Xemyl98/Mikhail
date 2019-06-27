@@ -1,0 +1,151 @@
+span {
+    position: absolute;
+    font-size: 18px;
+    font-family: 'Open Sans', arial, sans-serif;
+    font-weight: 600;
+    color: green;
+    width: 10%;
+    height: 20px;
+    left: 47.5%;
+}
+
+img {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+}
+
+.header .background {
+    position: relative;
+    width: 90%;
+    height: 950px;
+    display: block;
+    margin: auto;
+}
+
+.header .text1 {
+    top: 27.5%;
+}
+
+.header .text2 {
+    top: 34%;
+}
+
+.header .text3 {
+    top: 40%;
+}
+
+.header .boiler {
+    top: 49%;
+    left: 42%;
+    width: 300px;
+    height: 300px;
+}
+
+.header .witch {
+    top: 30%;
+    left: 60%;
+    width: 34.5%;
+    height: 40%;
+}
+
+.header .mix {
+    display: none;
+    top: 85%;
+    left: 43%;
+    width: 100px;
+    height: 50px;
+}
+
+.mix:hover {
+    content: url(../../../resources/oop/mixWhite.png);
+}
+
+.header .drink {
+    display: none;
+    top: 85%;
+    left: 43%;
+    width: 100px;
+    height: 50px;
+}
+
+.drink:hover {
+    content: url(../../../resources/oop/drinkRed.png);
+}
+
+.header .reset {
+    top: 85%;
+    left: 47.5%;
+    width: 100px;
+    height: 50px;
+}
+
+.reset:hover {
+    content: url(../../../resources/oop/resetWhite.png);
+}
+
+.header .table1 {
+    top: 26%;
+    left: 44%;
+    width: 50px;
+    height: 50px;
+}
+
+.header .table2 {
+    top: 32.5%;
+    left: 44%;
+    width: 50px;
+    height: 50px;
+}
+
+.header .table3 {
+    top: 39%;
+    left: 44%;
+    width: 50px;
+    height: 50px;
+}
+
+.header .ingredient1 {
+    top: 17%;
+    left: 10%;
+}
+
+.header .ingredient2 {
+    top: 17%;
+    left: 21%;
+}
+
+.header .ingredient3 {
+    top: 17%;
+    left: 32%;
+}
+
+.header .ingredient4 {
+    top: 36%;
+    left: 10%;
+}
+
+.header .ingredient5 {
+    top: 36%;
+    left: 21%;
+}
+
+.header .ingredient6 {
+    top: 36%;
+    left: 32%;
+}
+
+.header .ingredient7 {
+    top: 54%;
+    left: 10%;
+}
+
+.header .ingredient8 {
+    top: 54%;
+    left: 21%;
+}
+
+.header .ingredient9 {
+    top: 54%;
+    left: 32%;
+}

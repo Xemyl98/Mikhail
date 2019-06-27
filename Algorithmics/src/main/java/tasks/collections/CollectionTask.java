@@ -1,23 +1,23 @@
 package tasks.collections;
 
 import model.tree.TreeNode;
-import utility.collections.CollectionsUtilities;
+import utils.collections.CollectionUtils;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
 public class CollectionTask {
-    List<String> deleteWordsEndingWithS(List<String> inputList,CollectionsUtilities collectionsUtilities) {
-        collectionsUtilities.checkForUninitializedListInput(inputList);
-        return collectionsUtilities.getListWithoutSEndingWords(inputList);
+    public List<String> deleteWordsEndingWithS(List<String> inputList) {
+        CollectionUtils.listIsUninitialized(inputList);
+        return CollectionUtils.getListWithoutSEndingWords(inputList);
     }
 
-     Map<String, Integer> calculateTheCountOfDuplicationsValuesInHashMap(List<String> inputArrayList,CollectionsUtilities collectionsUtilities) throws NoSuchAlgorithmException {
-        return collectionsUtilities.getHashMapWithDuplicateCountValue(inputArrayList);
+    public Map<String, Integer> calculateTheCountOfDuplicationsValuesInHashMap(List<String> inputArrayList) throws NoSuchAlgorithmException {
+        return CollectionUtils.getHashMapWithDuplicateCountValue(inputArrayList);
     }
 
-    int countTheNumberOfNodes(TreeNode treeNode) {
+    public int countTheNumberOfNodes(TreeNode treeNode) {
         return treeNode.countNodes();
     }
 }

@@ -61,6 +61,7 @@ public class ChainOfResponsibilityTest {
     public void issuedFromLastNoteModuleOutputTest() {
         assertEquals(issuedFromLastNoteModuleOutput.toString(), noteModule500.takeMoney(new Money(5)));
     }
+
     @Test
     public void issuedFromNoteModule10OutputTest() {
         assertEquals(issuedFromNoteModule10Output.toString(), noteModule500.takeMoney(new Money(10)));

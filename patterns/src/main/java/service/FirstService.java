@@ -2,13 +2,12 @@ package service;
 
 public class FirstService implements Service {
 
-    public boolean execute()
-    {
+    public boolean execute() {
         return true;
     }
+
     @Override
-    public String getName()
-    {
+    public String getName() {
         return "First Service";
     }
 }

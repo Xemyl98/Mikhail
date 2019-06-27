@@ -8,7 +8,6 @@ public class Get {
     public static String getRequest(URL url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-
-        return connection.getResponseMessage();
+        return connection.getRequestMethod();
     }
 }

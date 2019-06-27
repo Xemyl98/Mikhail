@@ -7,7 +7,8 @@ import java.io.IOException;
 
 public class ExampleException {
 
-    private static final String pathToNonExistentFile="E://file.txt";
+    private static final String pathToNonExistentFile = "E://file.txt";
+
     public void divideByZeroException(int number) {
         try {
             int example = number / 0;
@@ -30,7 +31,7 @@ public class ExampleException {
             int[] array = new int[5];
             int example = array[indexBiggerThanArraySize];
         } catch (ArrayIndexOutOfBoundsException exception) {
-            throw new ArrayIndexOutOfBoundsException("Try to get data from "+indexBiggerThanArraySize);
+            throw new ArrayIndexOutOfBoundsException("Try to get data from " + indexBiggerThanArraySize);
         }
     }
 
@@ -39,7 +40,7 @@ public class ExampleException {
             File file = new File(pathToNonExistentFile);
             FileReader fr = new FileReader(file);
         } catch (FileNotFoundException exception) {
-            throw new FileNotFoundException(pathToNonExistentFile+" does not exist");
+            throw new FileNotFoundException(pathToNonExistentFile + " does not exist");
         }
     }
 
@@ -65,7 +66,7 @@ public class ExampleException {
                 i = reader.read();
             reader.close();
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException(pathToNonExistentFile+" does not exist");
+            throw new FileNotFoundException(pathToNonExistentFile + " does not exist");
         } catch (IOException e) {
             throw new IOException(e.getMessage());
         }

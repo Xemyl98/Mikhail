@@ -1,38 +1,38 @@
 package iterator;
 
 public class ConcreteAggregate implements Aggregate {
-    private   String[] tasks;
+    private String[] tasks;
+
     public void setTasks(String[] tasks) {
         this.tasks = tasks;
     }
 
-    public String getTasks(Iterator iterator)
-    {
-        String collectedString="";
+    public String getTasks(Iterator iterator) {
+        String collectedString = "";
         while (iterator.hasNext())
-            collectedString+=(String)iterator.next();
+            collectedString += (String) iterator.next();
         return collectedString;
     }
+
     @Override
-    public Iterator getIterator()
-    {
+    public Iterator getIterator() {
         return new TaskIterator();
     }
-    private class TaskIterator implements Iterator
-    {
-        int index=0;
+
+    private class TaskIterator implements Iterator {
+        int index = 0;
+
         @Override
-        public boolean hasNext()
-        {
-            if(tasks==null)
+        public boolean hasNext() {
+            if (tasks == null)
                 throw new NullPointerException("Input String Uninitialized");
-            if(index<tasks.length)
+            if (index < tasks.length)
                 return true;
             return false;
         }
+
         @Override
-        public Object next()
-        {
+        public Object next() {
             return tasks[index++];
         }
     }
