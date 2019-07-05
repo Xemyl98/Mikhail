@@ -1,6 +1,7 @@
-package audio;
+package audio.old;
 
 import constant.AudioConstant;
+import constant.PathToFile;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -10,11 +11,9 @@ import java.io.InputStream;
 public class Converter {
 
 
-    public static final String PATHNAME = "D:\\3.wav";
-
     public static File mp3ToWav(File mp3Data) throws UnsupportedAudioFileException, IOException {
         // open stream
-        File wavFile = new File(PATHNAME);
+        File wavFile = new File(PathToFile.PATHNAME);
         AudioInputStream mp3Stream = AudioSystem.getAudioInputStream(mp3Data);
         AudioFormat sourceFormat = mp3Stream.getFormat();
         // create audio format object for the desired stream/audio format

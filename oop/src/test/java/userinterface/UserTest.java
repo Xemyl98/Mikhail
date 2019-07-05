@@ -1,6 +1,7 @@
 package userinterface;
 
-import audio.SoundCapture;
+import audio.old.SoundCapture;
+import constant.PathToFile;
 import exception.InvalidArgumentException;
 import model.account.AdminList;
 import model.account.UserList;
@@ -80,7 +81,7 @@ public class UserTest {
 
     @Test
     public void test() throws Exception {
-        File file = new File("D:\\3.wav");
+        File file = new File(PathToFile.PATH_TO_OUTPUT_FILE);
         SoundCapture soundCapture = new SoundCapture();
         assertEquals("f", soundCapture.extractFeatureFromFileByteArray(file));
     }

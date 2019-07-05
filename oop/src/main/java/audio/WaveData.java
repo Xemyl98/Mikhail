@@ -1,12 +1,10 @@
 package audio;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import java.io.*;
 
 public class WaveData {
+
     private byte[] arrFile;
     private byte[] audioBytes;
     private float[] audioData;
@@ -19,7 +17,23 @@ public class WaveData {
     public WaveData() {
     }
 
-    public float[] extractAmplitudeFromFile(File wavFile) throws Exception {
+    public byte[] getAudioBytes() {
+        return audioBytes;
+    }
+
+    public double getDurationSec() {
+        return durationSec;
+    }
+
+    public float[] getAudioData() {
+        return audioData;
+    }
+
+    public AudioFormat getFormat() {
+        return format;
+    }
+
+    public float[] extractAmplitudeFromFile(File wavFile) {
         try {
             // create file input stream
             FileInputStream fis = new FileInputStream(wavFile);
@@ -32,13 +46,20 @@ public class WaveData {
         return extractAmplitudeFromFileByteArray(arrFile);
     }
 
-    public float[] extractAmplitudeFromFileByteArray(byte[] arrFile) throws Exception {
+    public float[] extractAmplitudeFromFileByteArray(byte[] arrFile) {
         // System.out.println("File :  "+wavFile+""+arrFile.length);
         bis = new ByteArrayInputStream(arrFile);
         return extractAmplitudeFromFileByteArrayInputStream(bis);
     }
 
-    public float[] extractAmplitudeFromFileByteArrayInputStream(ByteArrayInputStream bis) throws Exception {
+    /**
+     * for extracting amplitude array the format we are using :16bit, 22khz, 1
+     * channel, littleEndian,
+     *
+     * @return PCM audioData
+     * @throws Exception
+     */
+    public float[] extractAmplitudeFromFileByteArrayInputStream(ByteArrayInputStream bis) {
         try {
             audioInputStream = AudioSystem.getAudioInputStream(bis);
         } catch (UnsupportedAudioFileException e) {
@@ -48,12 +69,12 @@ public class WaveData {
             System.out.println("IOException during extracting amplitude");
             e.printStackTrace();
         }
-        float milliseconds = (long) ((audioInputStream.getFrameLength() * 1000) / audioInputStream.getFormat().getFrameRate());
-        durationSec = milliseconds / 1000.0;
+        float milliseconds = ((audioInputStream.getFrameLength() * 1000) / audioInputStream.getFormat().getFrameRate());
+        durationSec = (long) milliseconds / 1000.0;
         return extractFloatDataFromAudioInputStream(audioInputStream);
     }
 
-    public float[] extractFloatDataFromAudioInputStream(AudioInputStream audioInputStream) throws Exception {
+    public float[] extractFloatDataFromAudioInputStream(AudioInputStream audioInputStream) {
         format = audioInputStream.getFormat();
         audioBytes = new byte[(int) (audioInputStream.getFrameLength() * format.getFrameSize())];
         // calculate durationSec
@@ -69,7 +90,7 @@ public class WaveData {
         return extractFloatDataFromAmplitudeByteArray(format, audioBytes);
     }
 
-    public float[] extractFloatDataFromAmplitudeByteArray(AudioFormat format, byte[] audioBytes) throws Exception {
+    public float[] extractFloatDataFromAmplitudeByteArray(AudioFormat format, byte[] audioBytes) {
         // convert
         audioData = null;
         if (format.getSampleSizeInBits() == 16) {
@@ -107,8 +128,57 @@ public class WaveData {
         }// end of if..else
         // System.out.println("PCM Returned===============" +
         // audioData.length);
-        CustomWaveFile wf = new CustomWaveFile(2, 48000, 1, audioData);
-        wf.saveFile(new File("D:\\31.wav"));
         return audioData;
+    }
+
+    /**
+     * Save to file.
+     *
+     * @param name     the name
+     * @param fileType the file type
+     */
+    public void saveToFile(String name, AudioFileFormat.Type fileType, AudioInputStream audioInputStream) {
+        File myFile = new File(name);
+        if (!myFile.exists()) myFile.mkdir();
+
+        if (audioInputStream == null) {
+            return;
+        }
+        // reset to the beginnning of the captured data
+        try {
+            audioInputStream.reset();
+        } catch (Exception e) {
+            return;
+        }
+        myFile = new File(name + ".wav");
+        int i = 0;
+        while (myFile.exists()) {
+            String temp = String.format(name + "%d", i++);
+            myFile = new File(temp + ".wav");
+        }
+        try {
+            if (AudioSystem.write(audioInputStream, fileType, myFile) == -1) {
+            }
+        } catch (Exception ex) {
+        }
+        System.out.println(myFile.getAbsolutePath());
+        // JOptionPane.showMessageDialog(null, "File Saved !", "Success",
+        // JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * saving the file's bytearray
+     *
+     * @param fileName the name of file to save the received byteArray of File
+     */
+    public void saveFileByteArray(String fileName, byte[] arrFile) {
+        try {
+            fos = new FileOutputStream(fileName);
+            fos.write(arrFile);
+            fos.close();
+        } catch (Exception ex) {
+            System.err.println("Error during saving wave file " + fileName + " to disk" + ex.toString());
+        }
+        System.out.println("WAV Audio data saved to " + fileName);
     }
 }

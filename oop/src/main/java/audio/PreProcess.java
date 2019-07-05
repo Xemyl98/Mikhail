@@ -1,6 +1,7 @@
 package audio;
 
 public class PreProcess {
+
     float[] originalSignal;// initial extracted PCM,
     float[] afterEndPtDetection;// after endPointDetection
     public int noOfFrames;// calculated total no of frames
@@ -11,11 +12,18 @@ public class PreProcess {
     EndPointDetection epd;
     int samplingRate;
 
-
-    public PreProcess(float[] originalSignal, int samplePerFrame, int samplingRate) throws Exception {
+    /**
+     * constructor, all steps are called frm here
+     *
+     * @param audioData      extracted PCM data
+     * @param samplePerFrame how many samples in one frame,=660 << frameDuration, typically
+     *                       30; samplingFreq, typically 22Khz
+     */
+    public PreProcess(float[] originalSignal, int samplePerFrame, int samplingRate) {
         this.originalSignal = originalSignal;
         this.samplePerFrame = samplePerFrame;
         this.samplingRate = samplingRate;
+
         normalizePCM();
         epd = new EndPointDetection(this.originalSignal, this.samplingRate);
         afterEndPtDetection = epd.doEndPointDetection();
@@ -37,6 +45,9 @@ public class PreProcess {
         }
     }
 
+    /**
+     * divides the whole signal into frames of samplerPerFrame
+     */
     private void doFraming() {
         // calculate no of frames, for framing
 
@@ -52,6 +63,9 @@ public class PreProcess {
         }
     }
 
+    /**
+     * does hamming window on each frame
+     */
     private void doWindowing() {
         // prepare hammingWindow
         hammingWindow = new float[samplePerFrame + 1];

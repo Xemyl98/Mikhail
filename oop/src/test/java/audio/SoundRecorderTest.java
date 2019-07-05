@@ -25,5 +25,4 @@ public class SoundRecorderTest {
         recorder.recorderAudioFromMicrophone(AudioConstant.RECORDER_TIME);
         assertTrue(recordedFile.exists());
     }
-
 }
