@@ -33,10 +33,10 @@ public class Operations {
     public void extractFeatureFromFile(File speechFile) {
         float[] arrAmp;
 
-        arrAmp = wd.extractAmplitudeFromFile(speechFile);
+        //   arrAmp = wd.extractByteArrayFromFile(speechFile);
 
         //  return extractFeatureFromExtractedAmplitureByteArray(arrAmp);
-        extractFeatureFromExtractedAmplitureByteArray(arrAmp);
+        //   extractFeatureFromExtractedAmplitureByteArray(arrAmp);
         ;
     }
 }

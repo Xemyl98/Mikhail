@@ -8,7 +8,7 @@ import java.io.File;
 public class OperationsTest {
 
     @Test
-    public void mp3ToWav() {
+    public void operationTest() {
         Operations operations = new Operations();
         File file = new File(PathToFile.PATH_TO_OUTPUT_FILE);
         operations.extractFeatureFromFile(file);

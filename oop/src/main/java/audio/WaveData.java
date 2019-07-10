@@ -1,64 +1,37 @@
 package audio;
 
-import javax.sound.sampled.*;
-import java.io.*;
+import utils.audio.WaveDataUtil;
+
+import java.io.File;
 
 public class WaveData {
 
-    private byte[] arrFile;
-    private byte[] audioBytes;
-    private float[] audioData;
-    private FileOutputStream fos;
-    private ByteArrayInputStream bis;
-    private AudioInputStream audioInputStream;
-    private AudioFormat format;
-    private double durationSec;
 
     public WaveData() {
     }
 
-    public byte[] getAudioBytes() {
-        return audioBytes;
+
+    public byte[] extractByteArrayFromFile(File wavFile) {
+
+        return WaveDataUtil.convertFileToByteArray(wavFile);
+        // return extractAmplitudeFromFileByteArray(arrFile);
+
     }
 
-    public double getDurationSec() {
-        return durationSec;
-    }
 
-    public float[] getAudioData() {
-        return audioData;
-    }
-
-    public AudioFormat getFormat() {
-        return format;
-    }
-
-    public float[] extractAmplitudeFromFile(File wavFile) {
-        try {
-            // create file input stream
-            FileInputStream fis = new FileInputStream(wavFile);
-            // create bytearray from file
-            arrFile = new byte[(int) wavFile.length()];
-            fis.read(arrFile);
-        } catch (Exception e) {
-            System.out.println("SomeException : " + e.toString());
-        }
-        return extractAmplitudeFromFileByteArray(arrFile);
-    }
-
-    public float[] extractAmplitudeFromFileByteArray(byte[] arrFile) {
+/*    public float[] extractAmplitudeFromFileByteArray(byte[] arrFile) {
         // System.out.println("File :  "+wavFile+""+arrFile.length);
         bis = new ByteArrayInputStream(arrFile);
         return extractAmplitudeFromFileByteArrayInputStream(bis);
-    }
-
-    /**
+    }*/
+    /*
+     *//**
      * for extracting amplitude array the format we are using :16bit, 22khz, 1
      * channel, littleEndian,
      *
      * @return PCM audioData
      * @throws Exception
-     */
+     *//*
     public float[] extractAmplitudeFromFileByteArrayInputStream(ByteArrayInputStream bis) {
         try {
             audioInputStream = AudioSystem.getAudioInputStream(bis);
@@ -98,17 +71,17 @@ public class WaveData {
             audioData = new float[nlengthInSamples];
             if (format.isBigEndian()) {
                 for (int i = 0; i < nlengthInSamples; i++) {
-                    /* First byte is MSB (high order) */
+                    *//* First byte is MSB (high order) *//*
                     int MSB = audioBytes[2 * i];
-                    /* Second byte is LSB (low order) */
+                    *//* Second byte is LSB (low order) *//*
                     int LSB = audioBytes[2 * i + 1];
                     audioData[i] = MSB << 8 | (255 & LSB);
                 }
             } else {
                 for (int i = 0; i < nlengthInSamples; i++) {
-                    /* First byte is LSB (low order) */
+                    *//* First byte is LSB (low order) *//*
                     int LSB = audioBytes[2 * i];
-                    /* Second byte is MSB (high order) */
+                    *//* Second byte is MSB (high order) *//*
                     int MSB = audioBytes[2 * i + 1];
                     audioData[i] = MSB << 8 | (255 & LSB);
                 }
@@ -131,12 +104,12 @@ public class WaveData {
         return audioData;
     }
 
-    /**
+    *//**
      * Save to file.
      *
      * @param name     the name
      * @param fileType the file type
-     */
+     *//*
     public void saveToFile(String name, AudioFileFormat.Type fileType, AudioInputStream audioInputStream) {
         File myFile = new File(name);
         if (!myFile.exists()) myFile.mkdir();
@@ -166,11 +139,11 @@ public class WaveData {
         // JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /**
+    *//**
      * saving the file's bytearray
      *
      * @param fileName the name of file to save the received byteArray of File
-     */
+     *//*
     public void saveFileByteArray(String fileName, byte[] arrFile) {
         try {
             fos = new FileOutputStream(fileName);
@@ -180,5 +153,5 @@ public class WaveData {
             System.err.println("Error during saving wave file " + fileName + " to disk" + ex.toString());
         }
         System.out.println("WAV Audio data saved to " + fileName);
-    }
+    }*/
 }

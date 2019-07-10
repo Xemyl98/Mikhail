@@ -21,9 +21,10 @@ public class SoundCapture {
     public float[] extractFeatureFromFileByteArray(File file) throws Exception {
         float[] arrAmp;
 
-        arrAmp = wd.extractAmplitudeFromFile(file);
-        prp = new PreProcess(arrAmp, 512, samplingRate);
+        //   arrAmp = wd.extractByteArrayFromFile(file);
+        // prp = new PreProcess(arrAmp, 512, samplingRate);
 
-        return (arrAmp);
+        // return (arrAmp);
+        return null;
     }
 }
