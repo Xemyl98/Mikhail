@@ -1,27 +1,21 @@
 package audio;
 
+import constant.AudioConstant;
+
 public class PreProcess {
 
     float[] originalSignal;// initial extracted PCM,
     float[] afterEndPtDetection;// after endPointDetection
     public int noOfFrames;// calculated total no of frames
-    int samplePerFrame;// how many samples in one frame
+    int samplePerFrame = AudioConstant.SAMPLE_PER_FRAME;// how many samples in one frame
     int framedArrayLength;// how many samples in framed array
     public float[][] framedSignal;
     float[] hammingWindow;
     EndPointDetection epd;
     int samplingRate;
 
-    /**
-     * constructor, all steps are called frm here
-     *
-     * @param audioData      extracted PCM data
-     * @param samplePerFrame how many samples in one frame,=660 << frameDuration, typically
-     *                       30; samplingFreq, typically 22Khz
-     */
-    public PreProcess(float[] originalSignal, int samplePerFrame, int samplingRate) {
+    public PreProcess(float[] originalSignal, int samplingRate) {
         this.originalSignal = originalSignal;
-        this.samplePerFrame = samplePerFrame;
         this.samplingRate = samplingRate;
 
         normalizePCM();

@@ -11,6 +11,6 @@ public class OperationsTest {
     public void operationTest() {
         Operations operations = new Operations();
         File file = new File(PathToFile.PATH_TO_OUTPUT_FILE);
-        operations.extractFeatureFromFile(file);
+        operations.extractFloatArrayFromFile(file);
     }
 }

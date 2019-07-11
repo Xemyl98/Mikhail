@@ -7,7 +7,6 @@ public class Operations {
     PreProcess prp;
     FormatControlConf fc = new FormatControlConf();
     int samplingRate = (int) fc.getRate();
-    int samplePerFrame = 512;// 23.22ms
     FeatureExtract fExt;
     WaveData wd;
     private byte[] arrFile;
@@ -16,8 +15,9 @@ public class Operations {
         wd = new WaveData();
     }
 
-    public void extractFeatureFromExtractedAmplitureByteArray(float[] arrAmp) {
-        prp = new PreProcess(arrAmp, samplePerFrame, samplingRate);
+    public void extractFeatureFromExtractedAmplitureByteArray(float[] originalSignal) {
+        EndPointDetection endPointDetection = new EndPointDetection(originalSignal, samplingRate);
+        //   prp = new PreProcess(arrAmp, samplingRate);
         //   ByteBuffer.allocate(4).putFloat(prp.afterEndPtDetection).array();
         //fExt = new FeatureExtract(prp.framedSignal, samplingRate, samplePerFrame);
         //fExt.makeMfccFeatureVector();
@@ -25,18 +25,7 @@ public class Operations {
         return;
     }
 
-    /**
-     * @param speechFile
-     * @return
-     * @throws Exception
-     */
-    public void extractFeatureFromFile(File speechFile) {
-        float[] arrAmp;
-
-        //   arrAmp = wd.extractByteArrayFromFile(speechFile);
-
-        //  return extractFeatureFromExtractedAmplitureByteArray(arrAmp);
-        //   extractFeatureFromExtractedAmplitureByteArray(arrAmp);
-        ;
+    public float[] extractFloatArrayFromFile(File speechFile) {
+        return wd.extractFloatArrayFromFile(speechFile);
     }
 }
