@@ -9,6 +9,8 @@ public class AudioConstant {
     public static final int CHANNELS = 1;
     public static final int FRAME_SIZE = 2;
     public static final boolean BIG_ENDIAN = false;
+    public static final String PCM_SIGNED = "PCM_SIGN";
+    public static final double LENGTH_OF_TEST_WAV_FILE = 5.0;
     public static final AudioFormat audioFormat = new AudioFormat(
             AudioFormat.Encoding.PCM_SIGNED,
             AudioConstant.SAMPLE_RATE,
