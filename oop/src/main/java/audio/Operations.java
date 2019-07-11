@@ -15,6 +15,12 @@ public class Operations {
         wd = new WaveData();
     }
 
+
+    public float[] getSilenceRemovedSignal(float[] originalSignal) {
+        EndPointDetection endPointDetection = new EndPointDetection(originalSignal, samplingRate);
+        return endPointDetection.getSilenceRemovedSignal();
+    }
+
     public void extractFeatureFromExtractedAmplitureByteArray(float[] originalSignal) {
         EndPointDetection endPointDetection = new EndPointDetection(originalSignal, samplingRate);
         //   prp = new PreProcess(arrAmp, samplingRate);

@@ -157,7 +157,7 @@ public class WaveDataUtil {
         return floatFromTestFile;
     }
 
-    public static void writeByteArrayToFile(File file, byte[] bytes) {
+    public static void writeArrayToFile(File file, byte[] bytes) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file);
@@ -171,7 +171,7 @@ public class WaveDataUtil {
         }
     }
 
-    public static void writeByteArrayToFile(File file, float[] floats) {
+    public static void writeArrayToFile(File file, float[] floats) {
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file);

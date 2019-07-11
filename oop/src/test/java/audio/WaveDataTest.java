@@ -23,7 +23,7 @@ public class WaveDataTest {
     private static List<Float> floatArrayFromTestFile;
 
     private static void fillFileVariables() {
-        testWavFile = new File(PathToFile.EXAMPLE_OUTPUT_FILE);
+        testWavFile = new File(PathToFile.EXAMPLE_INPUT_FILE);
         testByteArrayFile = new File(PathToFile.BYTE_ARRAY_FROM_EXAMPLE_FILE);
         testAudioInputStreamByteArrayFile = new File(PathToFile.AUDIO_INPUT_STREAM_BYTE_ARRAY);
         testFloatArrayFile = new File(PathToFile.FLOAT_ARRAY_FROM_EXAMPLE_FILE);

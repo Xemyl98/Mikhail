@@ -20,7 +20,7 @@ public class PreProcess {
 
         normalizePCM();
         epd = new EndPointDetection(this.originalSignal, this.samplingRate);
-        afterEndPtDetection = epd.doEndPointDetection();
+        afterEndPtDetection = epd.getSilenceRemovedSignal();
         // ArrayWriter.printFloatArrayToFile(afterEndPtDetection, "endPt.txt");
         doFraming();
         doWindowing();
