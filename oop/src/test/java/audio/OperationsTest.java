@@ -15,16 +15,20 @@ public class OperationsTest {
     private static Operations operations;
     private static float[] originalSignal;
     private static float[] silenceRemovedSignal;
+    private static float[][] framedSignal;
     private static List<Float> silenceRemovedSignalFromTestFile;
     private static File testWavFile;
 
     @BeforeClass
     public static void setUp() {
         operations = new Operations();
-        testWavFile = new File(PathToFile.EXAMPLE_INPUT_FILE);
+        testWavFile = new File(PathToFile.EXAMPLE_INPUT_FILE_WITHOUT_SILENCE_IN_START);
         originalSignal = operations.extractFloatArrayFromFile(testWavFile);
         silenceRemovedSignal = operations.getSilenceRemovedSignal(originalSignal);
-        silenceRemovedSignalFromTestFile = WaveDataUtil.readFloatListFromFile(new File(PathToFile.SILENCE_REMOVED_SIGNAL_EXAMPLE_FILE));
+        // WaveDataUtil.writeArrayToFile(new File(PathToFile.SILENCE_REMOVED_SIGNAL_FROM_EXAMPLE_FILE_WITHOUT_SILENCE_IN_START), silenceRemovedSignal);
+        silenceRemovedSignalFromTestFile = WaveDataUtil.readFloatListFromFile(new File(PathToFile.SILENCE_REMOVED_SIGNAL_FROM_EXAMPLE_FILE_WITHOUT_SILENCE_IN_START));
+        framedSignal = operations.getFramedSignal(originalSignal, silenceRemovedSignal);
+        int a = 0;
     }
 
     @Test

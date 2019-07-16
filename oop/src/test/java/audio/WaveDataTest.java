@@ -23,10 +23,10 @@ public class WaveDataTest {
     private static List<Float> floatArrayFromTestFile;
 
     private static void fillFileVariables() {
-        testWavFile = new File(PathToFile.EXAMPLE_INPUT_FILE);
-        testByteArrayFile = new File(PathToFile.BYTE_ARRAY_FROM_EXAMPLE_FILE);
-        testAudioInputStreamByteArrayFile = new File(PathToFile.AUDIO_INPUT_STREAM_BYTE_ARRAY);
-        testFloatArrayFile = new File(PathToFile.FLOAT_ARRAY_FROM_EXAMPLE_FILE);
+        testWavFile = new File(PathToFile.EXAMPLE_INPUT_FILE_WITHOUT_SILENCE_IN_START);
+        testByteArrayFile = new File(PathToFile.BYTE_ARRAY_FROM_EXAMPLE_FILE_WITHOUT_SILENCE_IN_START);
+        testAudioInputStreamByteArrayFile = new File(PathToFile.AUDIO_INPUT_STREAM_BYTE_ARRAY_FROM_EXAMPLE_FILE_WITHOUT_SILENCE_IN_START);
+        testFloatArrayFile = new File(PathToFile.FLOAT_ARRAY_FROM_EXAMPLE_FILE_WITHOUT_SILENCE_IN_START);
     }
 
     private static void fillListVariables() {
@@ -41,6 +41,9 @@ public class WaveDataTest {
         fillFileVariables();
         fillListVariables();
         wavedata.extractFloatArrayFromFile(testWavFile);
+/*        WaveDataUtil.writeArrayToFile(testByteArrayFile, WaveDataUtil.getArrFile());
+        WaveDataUtil.writeArrayToFile(testAudioInputStreamByteArrayFile, WaveDataUtil.getAudioBytes());
+        WaveDataUtil.writeArrayToFile(testFloatArrayFile, WaveDataUtil.getAudioData());*/
     }
 
     @Test

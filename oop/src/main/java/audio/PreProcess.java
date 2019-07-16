@@ -11,29 +11,22 @@ public class PreProcess {
     int framedArrayLength;// how many samples in framed array
     public float[][] framedSignal;
     float[] hammingWindow;
-    EndPointDetection epd;
     int samplingRate;
 
-    public PreProcess(float[] originalSignal, int samplingRate) {
+    public PreProcess(float[] originalSignal, float[] silenceRemovedSignal, int samplingRate) {
         this.originalSignal = originalSignal;
         this.samplingRate = samplingRate;
-
-        normalizePCM();
-        epd = new EndPointDetection(this.originalSignal, this.samplingRate);
-        afterEndPtDetection = epd.getSilenceRemovedSignal();
-        // ArrayWriter.printFloatArrayToFile(afterEndPtDetection, "endPt.txt");
-        doFraming();
-        doWindowing();
+        afterEndPtDetection = silenceRemovedSignal;
     }
 
-    private void normalizePCM() {
+    public void normalizePCM() {
         float max = originalSignal[0];
         for (int i = 1; i < originalSignal.length; i++) {
             if (max < Math.abs(originalSignal[i])) {
                 max = Math.abs(originalSignal[i]);
             }
         }
-        // System.out.println("max PCM =  " + max);
+
         for (int i = 0; i < originalSignal.length; i++) {
             originalSignal[i] = originalSignal[i] / max;
         }
@@ -42,12 +35,11 @@ public class PreProcess {
     /**
      * divides the whole signal into frames of samplerPerFrame
      */
-    private void doFraming() {
+    public void doFraming() {
         // calculate no of frames, for framing
 
         noOfFrames = 2 * afterEndPtDetection.length / samplePerFrame - 1;
-        System.out.println("noOfFrames       " + noOfFrames + "  samplePerFrame     " + samplePerFrame + "  EPD length   "
-                + afterEndPtDetection.length);
+
         framedSignal = new float[noOfFrames][samplePerFrame];
         for (int i = 0; i < noOfFrames; i++) {
             int startIndex = (i * samplePerFrame / 2);
@@ -60,7 +52,7 @@ public class PreProcess {
     /**
      * does hamming window on each frame
      */
-    private void doWindowing() {
+    public float[][] doWindowing() {
         // prepare hammingWindow
         hammingWindow = new float[samplePerFrame + 1];
         // prepare for through out the data
@@ -74,5 +66,6 @@ public class PreProcess {
                 framedSignal[i][j] = framedSignal[i][j] * hammingWindow[j + 1];
             }
         }
+        return framedSignal;
     }
 }
