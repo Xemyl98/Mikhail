@@ -1,5 +1,9 @@
 package audio;
 
+import audio.feature.FeatureExtract;
+import audio.feature.FeatureVector;
+import constant.AudioConstant;
+
 import java.io.File;
 
 public class Operations {
@@ -9,7 +13,6 @@ public class Operations {
     int samplingRate = (int) fc.getRate();
     FeatureExtract fExt;
     WaveData wd;
-    private byte[] arrFile;
 
     public Operations() {
         wd = new WaveData();
@@ -31,13 +34,16 @@ public class Operations {
         return prp.doWindowing();
     }
 
-    public void extractFeatureFromExtractedAmplitureByteArray(float[] originalSignal) {
+    public FeatureVector extractFeatureFromExtractedAmplitureByteArray(float[] originalSignal) {
         EndPointDetection endPointDetection = new EndPointDetection(originalSignal, samplingRate);
+        endPointDetection.calculateSilenceRemovedSignal();
         prp = new PreProcess(originalSignal, endPointDetection.getSilenceRemovedSignal(), samplingRate);
-        //   ByteBuffer.allocate(4).putFloat(prp.afterEndPtDetection).array();
-        //fExt = new FeatureExtract(prp.framedSignal, samplingRate, samplePerFrame);
-        //fExt.makeMfccFeatureVector();
-        //return fExt.getFeatureVector();
-        return;
+        prp.normalizePCM();
+        prp.doFraming();
+        prp.doWindowing();
+        fExt = new FeatureExtract(prp.framedSignal, samplingRate, AudioConstant.SAMPLE_PER_FRAME);
+        fExt.makeMfccFeatureVector();
+        return fExt.getFeatureVector();
+
     }
 }

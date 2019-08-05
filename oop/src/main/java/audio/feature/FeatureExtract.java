@@ -1,6 +1,4 @@
-package audio;
-
-import feature.FeatureVector;
+package audio.feature;
 
 public class FeatureExtract {
     private float[][] framedSignal;
@@ -19,19 +17,11 @@ public class FeatureExtract {
     private double[] deltaEnergy;
     private double[] deltaDeltaEnergy;
     private FeatureVector fv;
-  /*  private MFCC mfcc;
+    private MFCC mfcc;
     private Delta delta;
     private Energy en;
 
-    // FeatureVector fv;
-    *//**
-     * constructor of feature extract
-     *
-     * @param framedSignal
-     *            2-D audio signal obtained after framing
-     * @param samplePerFrame
-     *            number of samples per frame
-     *//*
+
     public FeatureExtract(float[][] framedSignal, int samplingRate, int samplePerFrame) {
         this.framedSignal = framedSignal;
         this.noOfFrames = framedSignal.length;
@@ -53,10 +43,7 @@ public class FeatureExtract {
         return fv;
     }
 
-    *//**
-     * generates feature vector by combining mfcc, and its delta and delta
-     * deltas also contains energy and its deltas
-     *//*
+
     public void makeMfccFeatureVector() {
         calculateMFCC();
         doCepstralMeanNormalization();
@@ -94,9 +81,7 @@ public class FeatureExtract {
         System.gc();
     }
 
-    *//**
-     * calculates MFCC coefficients of each frame
-     *//*
+
     private void calculateMFCC() {
         for (int i = 0; i < noOfFrames; i++) {
             // for each frame i, make mfcc from current framed signal
@@ -104,10 +89,7 @@ public class FeatureExtract {
         }
     }
 
-    *//**
-     * performs cepstral mean substraction. <br>
-     * it removes channel effect...
-     *//*
+
     private void doCepstralMeanNormalization() {
         double sum;
         double mean;
@@ -126,5 +108,5 @@ public class FeatureExtract {
                 mCeps[j][i] = mfccFeature[j][i] - mean;
             }
         }
-    }*/
+    }
 }

@@ -1,8 +1,17 @@
-package feature;
+package audio.feature;
 
 import java.io.Serializable;
 
+/**
+ * @author Ganesh Tiwari for storing all coeffs of spectral features<br>
+ * include mfcc + delta mfcc + delta delta mfcc include engergy + delta
+ * energy+ delta delta energy
+ */
 public class FeatureVector implements Serializable {
+
+    /**
+     * 2d array of feature vector, dimension=noOfFrame*noOfFeatures
+     */
     private double[][] mfccFeature;
     private double[][] featureVector;// all
     private int noOfFrames;

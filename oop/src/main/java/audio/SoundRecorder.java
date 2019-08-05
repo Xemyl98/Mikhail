@@ -18,7 +18,7 @@ public class SoundRecorder extends Thread {
             record.open(AudioConstant.audioFormat);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
-            System.exit(1);
+            System.exit(1);// TODO: 05.08.2019 реализовать повторную запись
         }
         SoundRecorderUtil.startRecording(record);
         startThread();

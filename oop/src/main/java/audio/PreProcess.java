@@ -57,13 +57,12 @@ public class PreProcess {
         hammingWindow = new float[samplePerFrame + 1];
         // prepare for through out the data
         for (int i = 1; i <= samplePerFrame; i++) {
-
             hammingWindow[i] = (float) (0.54 - 0.46 * (Math.cos(2 * Math.PI * i / samplePerFrame)));
         }
         // do windowing
         for (int i = 0; i < noOfFrames; i++) {
             for (int j = 0; j < samplePerFrame; j++) {
-                framedSignal[i][j] = framedSignal[i][j] * hammingWindow[j + 1];
+                framedSignal[i][j] *= hammingWindow[j + 1];
             }
         }
         return framedSignal;

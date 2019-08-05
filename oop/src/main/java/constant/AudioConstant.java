@@ -12,7 +12,7 @@ public class AudioConstant {
     public static final String PCM_SIGNED = "PCM_SIGN";
     public static final int SAMPLE_PER_FRAME = 512;
     public static final double LENGTH_OF_TEST_WAV_FILE = 5.0;
-    public static final AudioFormat audioFormat = new AudioFormat(
+    public static final AudioFormat audioFormat = new AudioFormat(// TODO: 05.08.2019 Constant
             AudioFormat.Encoding.PCM_SIGNED,
             AudioConstant.SAMPLE_RATE,
             AudioConstant.SAMPLE_SIZE_IN_BITS,

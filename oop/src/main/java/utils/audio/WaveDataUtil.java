@@ -51,7 +51,7 @@ public class WaveDataUtil {
         try {
             FileInputStream fis = new FileInputStream(wavFile);
             arrFile = new byte[(int) wavFile.length()];
-            fis.read(arrFile);
+            fis.read(arrFile);// TODO: 05.08.2019 посмотреть реализацию в 1 строку
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -82,7 +82,7 @@ public class WaveDataUtil {
             audioData = new float[nlengthInSamples];
             for (int i = 0; i < nlengthInSamples; i++) {
                 int MSB = audioBytes[2 * i];
-                int LSB = audioBytes[2 * i + 1];
+                int LSB = audioBytes[2 * i + 1];// TODO: 05.08.2019 расшифровать аббривеатуру
                 if (format.isBigEndian()) {
                     audioData[i] = MSB << 8 | (255 & LSB);
                 } else {
@@ -157,7 +157,7 @@ public class WaveDataUtil {
         return floatFromTestFile;
     }
 
-    public static void writeArrayToFile(File file, byte[] bytes) {
+    public static void writeArrayToFile(File file, byte[] bytes) {// TODO: 05.08.2019 generic
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file);
@@ -178,6 +178,40 @@ public class WaveDataUtil {
 
             for (float i : floats) {
                 fileWriter.write(i + "\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeArrayToFile(File file, float[][] floats) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+
+            for (float[] first : floats) {
+                for (float second : first) {
+                    fileWriter.write(second + " \t");
+                }
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeArrayToFile(File file, double[][] floats) {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+
+            for (double[] first : floats) {
+                for (double second : first) {
+                    fileWriter.write(second + " \t");
+                }
+                fileWriter.write("\n");
             }
             fileWriter.close();
         } catch (IOException e) {
